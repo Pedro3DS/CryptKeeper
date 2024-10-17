@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inimigoTerrestrePrefab: {fileID: 2110220847936240439, guid: 87ca5a3ca35e74f409f9af1a9eac86f6, type: 3}
   inimigoVoadorPrefab: {fileID: 3031043992362039407, guid: 5954e71478cb918429d7d3458e830948, type: 3}
+  inimigoEspecialPrefab: {fileID: 0}
   hordaAtual: 3
   inimigosPorHorda: 5
   spawnInterval: 1
@@ -3227,8 +3228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot: {fileID: 2940331612354814200, guid: 94642cdbfddaa6143bd08f753abdc3c6, type: 3}
+  moveSpeed: 450
   shootSpeed: 20
   shootCadence: 0.1
+  shootSamples: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
