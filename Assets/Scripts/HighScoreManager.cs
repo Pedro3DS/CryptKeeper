@@ -7,11 +7,11 @@ public class HighScoreManager : MonoBehaviour {
 
         HighScore newScore = new HighScore(playerName, score);
         highScores.Add(newScore);
-        highScores.Sort((x, y) => y.score.CompareTo(x.score)); // Ordena em ordem decrescente
+        highScores.Sort((x, y) => y.score.CompareTo(x.score)); 
 
-        // Limita o número de entradas para 3
+        
         if (highScores.Count > 3) {
-            highScores.RemoveAt(3); // Remove o quarto melhor (menor) score
+            highScores.RemoveAt(3); 
         }
 
         // Salva os dados no PlayerPrefs
@@ -20,7 +20,7 @@ public class HighScoreManager : MonoBehaviour {
             PlayerPrefs.SetInt("TopScore" + i, highScores[i].score);
         }
 
-        PlayerPrefs.Save(); // Garante que os dados sejam salvos
+        PlayerPrefs.Save(); 
     }
 
     public static List<HighScore> LoadHighScores() {
