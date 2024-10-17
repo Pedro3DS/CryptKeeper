@@ -1,12 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public GameObject inimigoTerrestrePrefab;
     public GameObject inimigoVoadorPrefab;
     public GameObject inimigoEspecialPrefab;
-    public TextMeshProUGUI name; // TextMeshProUGUI para mostrar o nome do jogador.
+    public TextMeshProUGUI name; 
     public int hordaAtual = 1;
     public int inimigosPorHorda = 5;
     public float spawnInterval = 1.0f;
@@ -15,37 +16,44 @@ public class GameManager : MonoBehaviour {
     private bool hordaAtiva = false;
     private bool inimigoEspecialSpawnado = false;
     private int inimigosEspeciaisRestantes = 0;
-    private int playerScore = 0; // Pontuação do jogador
-
+    private int playerScore = 0; 
     void Start() {
-        LoadPlayerName(); // Carrega o nome do jogador.
+        LoadPlayerName(); 
         StartCoroutine(GerenciarHordas());
     }
 
     void LoadPlayerName() {
         if (PlayerPrefs.HasKey("PlayerName")) {
             string playerName = PlayerPrefs.GetString("PlayerName");
-            name.text = playerName; // Exibe o nome no TextMeshProUGUI.
+            name.text = playerName; 
         }
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
-            AddScore(10); // Adiciona 10 pontos ao pressionar A
+            AddScore(10); //TODO: apagar isso que foi para teste.
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            PlayerDied(); //TODO: apagar isso que foi para teste.
         }
     }
-
+    // Logica de matar e aumentar os pontos
     private void AddScore(int points) {
-        playerScore += points; // Aumenta a pontuação
+        playerScore += points; 
         Debug.Log("Pontuação atual: " + playerScore);
     }
-
-    private void OnDisable() {
-        SaveScore(); // Salva a pontuação ao sair da cena
+    //Logica de morte coloque aqui
+    private void PlayerDied() {
+        SaveScore(); 
+        SceneManager.LoadScene("Menu");
     }
 
     private void SaveScore() {
-        PlayerPrefs.SetInt("PlayerScore", playerScore); // Salva a pontuação no PlayerPrefs
+        string playerName = PlayerPrefs.GetString("PlayerName", "AAA");
+        Debug.Log("Salvando pontuação: " + playerName + " - " + playerScore);  
+        HighScoreManager.SaveScore(playerName, playerScore); 
+        PlayerPrefs.Save(); 
     }
 
     IEnumerator GerenciarHordas() {

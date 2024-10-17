@@ -472,6 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854133848}
   - component: {fileID: 854133847}
+  - component: {fileID: 854133849}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -495,7 +496,7 @@ MonoBehaviour:
   inimigoVoadorPrefab: {fileID: 3031043992362039407, guid: 5954e71478cb918429d7d3458e830948, type: 3}
   inimigoEspecialPrefab: {fileID: 7269584566451559847, guid: b5b61fa27e5821c4680ba7f9d82e687d, type: 3}
   name: {fileID: 736227726}
-  hordaAtual: 3
+  hordaAtual: 1
   inimigosPorHorda: 5
   spawnInterval: 1
   screenWidth: 20
@@ -515,6 +516,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &854133849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854133846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfd9202bd7c3924a97a662bfe6b4e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &979621470
 GameObject:
   m_ObjectHideFlags: 0

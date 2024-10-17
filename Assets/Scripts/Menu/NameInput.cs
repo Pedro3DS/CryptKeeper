@@ -1,21 +1,17 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class NameInput : MonoBehaviour {
     public TextMeshProUGUI[] letterTexts;
-    public TextMeshProUGUI playerScoreText;
-    public TextMeshProUGUI rankingText;
-
-    private char[] letters = new char[5] { 'A', 'A', 'A', 'A', 'A' };
+    public TextMeshProUGUI rankingText;   
+    private char[] letters = new char[5]; 
     private int currentIndex = 0;
 
     private void Start() {
-        LoadLastSavedName();
+        LoadPlayerName(); 
         UpdateLetters();
         HighlightCurrentLetter();
-        //DisplayPlayerScore();
-        DisplayRanking();
+        DisplayRanking(); 
     }
 
     private void Update() {
@@ -32,8 +28,8 @@ public class NameInput : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Return)) {
-            // Removido o comando de salvar o nome e a pontuação aqui.
-            SceneManager.LoadScene("SampleScene");
+            SavePlayerName(); 
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene"); 
         }
     }
 
@@ -61,11 +57,7 @@ public class NameInput : MonoBehaviour {
 
     private void HighlightCurrentLetter() {
         for (int i = 0; i < letterTexts.Length; i++) {
-            if (i == currentIndex) {
-                letterTexts[i].fontSize = 85;
-            } else {
-                letterTexts[i].fontSize = 60;
-            }
+            letterTexts[i].fontSize = i == currentIndex ? 85 : 60;
         }
     }
 
@@ -79,28 +71,23 @@ public class NameInput : MonoBehaviour {
         HighlightCurrentLetter();
     }
 
-    private void LoadLastSavedName() {
-        if (PlayerPrefs.HasKey("PlayerName")) {
-            string savedName = PlayerPrefs.GetString("PlayerName");
-            for (int i = 0; i < letters.Length; i++) {
-                if (i < savedName.Length) {
-                    letters[i] = savedName[i];
-                }
-            }
-        }
+    private void SavePlayerName() {
+        string playerName = new string(letters);
+        PlayerPrefs.SetString("PlayerName", playerName);
+        PlayerPrefs.Save();
+        Debug.Log("Nome salvo: " + playerName); 
     }
 
-    private void DisplayPlayerScore() {
-        if (playerScoreText != null) {
-            playerScoreText.text = "Score: " + PlayerPrefs.GetInt("PlayerScore", 0).ToString(); // Carrega a pontuação do PlayerPrefs
-        }
+    private void LoadPlayerName() {
+        string savedName = PlayerPrefs.GetString("PlayerName", "AAAAA"); 
+        letters = savedName.ToCharArray();
     }
 
     private void DisplayRanking() {
-        if (rankingText != null) {
-            string playerName = new string(letters);
-            int playerScore = PlayerPrefs.GetInt("PlayerScore", 0);
-            rankingText.text = "Ranking:\n1. " + playerName + " - " + playerScore;
+        rankingText.text = ""; 
+        var highScores = HighScoreManager.LoadHighScores(); 
+        for (int i = 0; i < highScores.Count; i++) {
+            rankingText.text += (i + 1) + ". " + highScores[i].name + ": " + highScores[i].score + "\n"; 
         }
     }
 }
