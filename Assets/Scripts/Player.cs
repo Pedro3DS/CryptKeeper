@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     }
 
     void Shoot(){
-        if (Time.time >= _nextShoot && (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Keypad5)))
+        if (Time.time >= _nextShoot && (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Joystick1Button2)))
         {
 
             _nextShoot = Time.time + shootCadence;
@@ -56,25 +56,25 @@ public class Player : MonoBehaviour
             // if(Input.GetKeyDown(KeyCode.Keypad1)){
             //     direction = Vector2.left;
             // }
-            if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad5)){
+            if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKey(KeyCode.Joystick1Button2) && Input.GetKeyDown(KeyCode.Joystick1Button1)){
                 direction = Vector2.down + Vector2.right;
             }
-            else if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad4)){
+            else if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKey(KeyCode.Joystick1Button2) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
                 direction = Vector2.up + Vector2.right;
             }
-            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad4)){
+            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad4)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button1)){
                 direction = Vector2.up + Vector2.left;
             }
-            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad5)){
+            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad5)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
                 direction = Vector2.down + Vector2.left;
             }
-            else if(Input.GetKeyDown(KeyCode.Keypad2)){
+            else if(Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Joystick1Button2)){
                 direction = Vector2.right;
             }
-            else if(Input.GetKeyDown(KeyCode.Keypad4)){
+            else if(Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Joystick1Button0)){
                 direction = Vector2.up;
             }
-            else if(Input.GetKeyDown(KeyCode.Keypad5)){
+            else if(Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button1)){
                 direction = Vector2.down;
             }
 
@@ -91,5 +91,9 @@ public class Player : MonoBehaviour
             Destroy(bulletRB, 2);
         }
         
+    }
+
+    void FixScreenBounds(){
+        // if(_rb2d.transform.position >)
     }
 }
