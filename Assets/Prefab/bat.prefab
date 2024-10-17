@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.1245074, y: 0.13123623, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8939465863402631422}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4a55658291bbd4fbfe4473a8849a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 3
+  velocidade: 2
   distanciaAtaque: 5
   projetilPrefab: {fileID: 4259884682701938600, guid: 6ee2ba8fe0132ac4db2ca4703a7d0cf0, type: 3}
   intervaloTiro: 2
