@@ -1,10 +1,13 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public GameObject inimigoTerrestrePrefab;
     public GameObject inimigoVoadorPrefab;
     public GameObject inimigoEspecialPrefab;
+    public TextMeshProUGUI name; 
     public int hordaAtual = 1;
     public int inimigosPorHorda = 5;
     public float spawnInterval = 1.0f;
@@ -13,9 +16,44 @@ public class GameManager : MonoBehaviour {
     private bool hordaAtiva = false;
     private bool inimigoEspecialSpawnado = false;
     private int inimigosEspeciaisRestantes = 0;
-
+    private int playerScore = 0; 
     void Start() {
+        LoadPlayerName(); 
         StartCoroutine(GerenciarHordas());
+    }
+
+    void LoadPlayerName() {
+        if (PlayerPrefs.HasKey("PlayerName")) {
+            string playerName = PlayerPrefs.GetString("PlayerName");
+            name.text = playerName; 
+        }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.A)) {
+            AddScore(10); //TODO: apagar isso que foi para teste.
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            PlayerDied(); //TODO: apagar isso que foi para teste.
+        }
+    }
+    // Logica de matar e aumentar os pontos
+    private void AddScore(int points) {
+        playerScore += points; 
+        Debug.Log("Pontuação atual: " + playerScore);
+    }
+    //Logica de morte coloque aqui
+    private void PlayerDied() {
+        SaveScore(); 
+        SceneManager.LoadScene("Menu");
+    }
+
+    private void SaveScore() {
+        string playerName = PlayerPrefs.GetString("PlayerName", "AAA");
+        Debug.Log("Salvando pontuação: " + playerName + " - " + playerScore);  
+        HighScoreManager.SaveScore(playerName, playerScore); 
+        PlayerPrefs.Save(); 
     }
 
     IEnumerator GerenciarHordas() {
