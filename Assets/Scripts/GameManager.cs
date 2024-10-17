@@ -1,10 +1,12 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public GameObject inimigoTerrestrePrefab;
     public GameObject inimigoVoadorPrefab;
     public GameObject inimigoEspecialPrefab;
+    public TextMeshProUGUI name; // TextMeshProUGUI para mostrar o nome do jogador.
     public int hordaAtual = 1;
     public int inimigosPorHorda = 5;
     public float spawnInterval = 1.0f;
@@ -13,9 +15,37 @@ public class GameManager : MonoBehaviour {
     private bool hordaAtiva = false;
     private bool inimigoEspecialSpawnado = false;
     private int inimigosEspeciaisRestantes = 0;
+    private int playerScore = 0; // Pontuação do jogador
 
     void Start() {
+        LoadPlayerName(); // Carrega o nome do jogador.
         StartCoroutine(GerenciarHordas());
+    }
+
+    void LoadPlayerName() {
+        if (PlayerPrefs.HasKey("PlayerName")) {
+            string playerName = PlayerPrefs.GetString("PlayerName");
+            name.text = playerName; // Exibe o nome no TextMeshProUGUI.
+        }
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.A)) {
+            AddScore(10); // Adiciona 10 pontos ao pressionar A
+        }
+    }
+
+    private void AddScore(int points) {
+        playerScore += points; // Aumenta a pontuação
+        Debug.Log("Pontuação atual: " + playerScore);
+    }
+
+    private void OnDisable() {
+        SaveScore(); // Salva a pontuação ao sair da cena
+    }
+
+    private void SaveScore() {
+        PlayerPrefs.SetInt("PlayerScore", playerScore); // Salva a pontuação no PlayerPrefs
     }
 
     IEnumerator GerenciarHordas() {
