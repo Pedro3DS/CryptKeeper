@@ -9,28 +9,28 @@ public class Player : MonoBehaviour {
     public float shootSpeed;
 
     [SerializeField] private float shootCadence = 0.5f;
-    [SerializeField] private int shootSamples;
     private float _nextShoot = 0f;
 
-    [SerializeField] private int maxHealth = 3; // Vida m�xima do jogador
+    [SerializeField] private int maxHealth = 3; 
     private int currentHealth;
 
-    public GameObject[] heartSprites; // Cora��es na UI
+    public GameObject[] heartSprites; 
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider;
 
     private GameManager gameManager;
 
-
+    private Vector2 lastMoveDirection; 
 
     void Start() {
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        playerCollider = gameObject.GetComponent<Collider2D>(); // Obt�m o Collider2D do jogador
+        playerCollider = gameObject.GetComponent<Collider2D>();
         currentHealth = maxHealth;
-        UpdateHearts(); // Atualiza os cora��es no in�cio do jogo
+        UpdateHearts(); 
         gameManager = FindObjectOfType<GameManager>();
+        lastMoveDirection = Vector2.right; 
     }
 
     void Update() {
@@ -42,12 +42,17 @@ public class Player : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        _rb2d.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed) * Time.deltaTime;
+        Vector2 move = new Vector2(horizontal, vertical).normalized;
+        _rb2d.velocity = move * moveSpeed * Time.deltaTime;
+
+        if (move != Vector2.zero) {
+            lastMoveDirection = move; 
+        }
 
         if (horizontal > 0) {
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
         } else if (horizontal < 0) {
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            spriteRenderer.flipX = true;
         }
 
         if (horizontal != 0 || vertical != 0) {
@@ -57,42 +62,17 @@ public class Player : MonoBehaviour {
         }
     }
 
-
-    void Shoot(){
-        if (Time.time >= _nextShoot && (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Joystick1Button2)))
-        {
-
+    void Shoot() {
+        if (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) {
             _nextShoot = Time.time + shootCadence;
 
-            Vector2 direction = Vector2.left;
-            // if(Input.GetKeyDown(KeyCode.Keypad1)){
-            //     direction = Vector2.left;
-            // }
-            if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKey(KeyCode.Joystick1Button2) && Input.GetKeyDown(KeyCode.Joystick1Button1)){
-                direction = Vector2.down + Vector2.right;
-            }
-            else if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKey(KeyCode.Joystick1Button2) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
-                direction = Vector2.up + Vector2.right;
-            }
-            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad4)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button1)){
-                direction = Vector2.up + Vector2.left;
-            }
-            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad5)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
-                direction = Vector2.down + Vector2.left;
-            }
-            else if(Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Joystick1Button2)){
-                direction = Vector2.right;
-            }
-            else if(Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Joystick1Button0)){
-                direction = Vector2.up;
-            }
-            else if(Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button1)){
-                direction = Vector2.down;
-            }
+            
+            GameObject newShoot = Instantiate(shoot, transform.position, Quaternion.identity);
+            newShoot.GetComponent<Rigidbody2D>().velocity = lastMoveDirection * shootSpeed;
         }
     }
 
-    // Detectar colis�o com inimigos
+    
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("InimigoEspecial") && !isInvulnerable) {
             TakeDamage();
@@ -104,9 +84,9 @@ public class Player : MonoBehaviour {
         UpdateHearts();
 
         if (currentHealth <= 0) {
-            Die(); // Se a vida chegar a zero, chama Die()
+            Die(); 
         } else {
-            StartCoroutine(BecomeInvulnerable()); // Pisca e se torna invulner�vel
+            StartCoroutine(BecomeInvulnerable()); 
         }
     }
 
@@ -118,27 +98,21 @@ public class Player : MonoBehaviour {
 
     IEnumerator BecomeInvulnerable() {
         isInvulnerable = true;
-        playerCollider.enabled = false; // Desativa o Collider para evitar colis�es
+        playerCollider.enabled = false;
 
         for (int i = 0; i < 5; i++) {
-            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f); // Diminuir a opacidade
+            spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f); 
             yield return new WaitForSeconds(0.2f);
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f); // Voltar � opacidade total
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f); 
             yield return new WaitForSeconds(0.2f);
         }
 
-        playerCollider.enabled = true; // Reativa o Collider ap�s o per�odo de invulnerabilidade
+        playerCollider.enabled = true;
         isInvulnerable = false;
     }
 
-
     void Die() {
-        gameManager.SaveScore(); // Chama o m�todo SaveScore do GameManager
-        SceneManager.LoadScene("Menu"); // Muda para a cena do Menu
+        gameManager.SaveScore(); 
+        SceneManager.LoadScene("Menu"); 
     }
-
-    void FixScreenBounds(){
-        // if(_rb2d.transform.position >)
-    }
-
 }
