@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float shootCadence = 0.5f;
     [SerializeField] private int shootSamples;
     private float _nextShoot = 0f;
+    private bool _canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        FixScreenBounds();
         Movement();
         Shoot();
     }
@@ -52,7 +55,7 @@ public class Player : MonoBehaviour
 
             _nextShoot = Time.time + shootCadence;
 
-            Vector2 direction = Vector2.left;
+            Vector2 direction = Vector2.up;
             // if(Input.GetKeyDown(KeyCode.Keypad1)){
             //     direction = Vector2.left;
             // }
@@ -68,13 +71,13 @@ public class Player : MonoBehaviour
             else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad5)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
                 direction = Vector2.down + Vector2.left;
             }
-            else if(Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Joystick1Button2)){
+            else if(Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Joystick1Button1)){
+                direction = Vector2.left;
+            }
+            else if(Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Joystick1Button2)){
                 direction = Vector2.right;
             }
-            else if(Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Joystick1Button0)){
-                direction = Vector2.up;
-            }
-            else if(Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button1)){
+            else if(Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button3)){
                 direction = Vector2.down;
             }
 
@@ -94,6 +97,24 @@ public class Player : MonoBehaviour
     }
 
     void FixScreenBounds(){
-        // if(_rb2d.transform.position >)
+        if(_rb2d.transform.position.x < Camera.main.ScreenToWorldPoint(Vector3.zero).x || _rb2d.transform.position.x > Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1){
+            _rb2d.velocity = Vector2.zero;
+        }
+        // UnityEngine.Debug.Log( + " -- " +  + " -- " + Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1);
+        // // UnityEngine.Debug.Log(Camera.main.ScreenToWorldPoint(Vector3.zero).x + " -- " + Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1);
+        // float currentX = transform.position.x;
+
+        // float newX = _rb2d.transform.position.x + currentX;
+
+        // if (newX < Camera.main.ScreenToWorldPoint(Vector3.zero).x)
+        // {
+        //     newX = Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1;
+        //     // UnityEngine.Debug.Log(Mathf.Abs(Camera.main.ScreenToWorldPoint(Vector3.zero).x));
+        //     // UnityEngine.Debug.Log();
+        // }
+        // else if (newX > (Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1))
+        // {
+        //     newX = Camera.main.ScreenToWorldPoint(Vector3.zero).x;
+        // }
     }
 }
