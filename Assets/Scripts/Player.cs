@@ -1,6 +1,8 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     private Rigidbody2D _rb2d;
@@ -11,7 +13,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private float shootCadence = 0.5f;
     [SerializeField] private int shootSamples;
     private float _nextShoot = 0f;
-    private bool _canMove = true;
+    private bool _canTakeDamage = true;
 
     [SerializeField] private int maxHealth = 3; // Vida m�xima do jogador
     private int currentHealth;
@@ -23,9 +25,22 @@ public class Player : MonoBehaviour {
 
     private GameManager gameManager;
 
+    [SerializeField] private Camera mainCamera;
+    private Vector2 _screenBounds;
+
+    [Header("Power Ups")]
+    private string _powerUp;
+    [SerializeField] private Image powerUpField;
+    [SerializeField] private GameObject shield;
+    [SerializeField] private Sprite shieldSprite;
+
 
 
     void Start() {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         playerCollider = gameObject.GetComponent<Collider2D>(); // Obt�m o Collider2D do jogador
@@ -41,9 +56,13 @@ public class Player : MonoBehaviour {
         FixScreenBounds();
         Movement();
         Shoot();
+        if(Input.GetKeyDown(KeyCode.Space)){
+            UsePowerUp();
+        }
     }
 
     void Movement() {
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
@@ -102,16 +121,46 @@ public class Player : MonoBehaviour {
         if (collision.gameObject.CompareTag("InimigoEspecial") && !isInvulnerable) {
             TakeDamage();
         }
+        
+    }
+    
+    void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("Shield")) {
+            Destroy(other.gameObject);
+            // CreateShield();
+            ChangePowerUpImage(shieldSprite);
+            _powerUp = "shield";
+        }
+    }
+
+    void CreateShield(){
+        Instantiate(shield, gameObject.transform);
+
+    }
+
+    void UsePowerUp(){
+        if(_powerUp == "shield"){
+            CreateShield();
+            _powerUp = " ";
+        }
+    }
+
+    void ChangePowerUpImage(Sprite powerUpSprite){
+        powerUpField.preserveAspect = true;
+        powerUpField.sprite = powerUpSprite;
     }
 
     void TakeDamage() {
-        currentHealth--;
-        UpdateHearts();
+        if(_canTakeDamage){
+            currentHealth--;
+            UpdateHearts();
 
-        if (currentHealth <= 0) {
-            Die(); // Se a vida chegar a zero, chama Die()
-        } else {
-            StartCoroutine(BecomeInvulnerable()); // Pisca e se torna invulner�vel
+            if (currentHealth <= 0) {
+                Die(); // Se a vida chegar a zero, chama Die()
+            } else {
+                StartCoroutine(BecomeInvulnerable()); // Pisca e se torna invulner�vel
+            }
+            
         }
     }
 
@@ -143,25 +192,11 @@ public class Player : MonoBehaviour {
     }
 
     void FixScreenBounds(){
-        if(_rb2d.transform.position.x < Camera.main.ScreenToWorldPoint(Vector3.zero).x || _rb2d.transform.position.x > Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1){
-            _rb2d.velocity = Vector2.zero;
-        }
-        // UnityEngine.Debug.Log( + " -- " +  + " -- " + Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1);
-        // // UnityEngine.Debug.Log(Camera.main.ScreenToWorldPoint(Vector3.zero).x + " -- " + Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1);
-        // float currentX = transform.position.x;
-
-        // float newX = _rb2d.transform.position.x + currentX;
-
-        // if (newX < Camera.main.ScreenToWorldPoint(Vector3.zero).x)
-        // {
-        //     newX = Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1;
-        //     // UnityEngine.Debug.Log(Mathf.Abs(Camera.main.ScreenToWorldPoint(Vector3.zero).x));
-        //     // UnityEngine.Debug.Log();
-        // }
-        // else if (newX > (Camera.main.ScreenToWorldPoint(Vector3.zero).x * -1))
-        // {
-        //     newX = Camera.main.ScreenToWorldPoint(Vector3.zero).x;
-        // }
+        _screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+        Vector3 playerPosition = transform.position;
+        playerPosition.x = Mathf.Clamp(playerPosition.x, _screenBounds.x * -1 + spriteRenderer.bounds.extents.x, _screenBounds.x - spriteRenderer.bounds.extents.x);
+        playerPosition.y = Mathf.Clamp(playerPosition.y, _screenBounds.y * -1 + spriteRenderer.bounds.extents.y, _screenBounds.y - spriteRenderer.bounds.extents.y);
+        _rb2d.transform.position = playerPosition;
     }
 
 }
