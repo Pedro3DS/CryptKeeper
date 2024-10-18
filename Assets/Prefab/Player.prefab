@@ -198,3 +198,8 @@ MonoBehaviour:
   shootSpeed: 20
   shootCadence: 0.1
   shootSamples: 0
+  maxHealth: 3
+  heartSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
