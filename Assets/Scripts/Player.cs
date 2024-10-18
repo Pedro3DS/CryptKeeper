@@ -12,10 +12,10 @@ public class Player : MonoBehaviour {
     [SerializeField] private int shootSamples;
     private float _nextShoot = 0f;
 
-    [SerializeField] private int maxHealth = 3; // Vida máxima do jogador
+    [SerializeField] private int maxHealth = 3; // Vida mï¿½xima do jogador
     private int currentHealth;
 
-    public GameObject[] heartSprites; // Corações na UI
+    public GameObject[] heartSprites; // Coraï¿½ï¿½es na UI
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider;
@@ -27,9 +27,9 @@ public class Player : MonoBehaviour {
     void Start() {
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        playerCollider = gameObject.GetComponent<Collider2D>(); // Obtém o Collider2D do jogador
+        playerCollider = gameObject.GetComponent<Collider2D>(); // Obtï¿½m o Collider2D do jogador
         currentHealth = maxHealth;
-        UpdateHearts(); // Atualiza os corações no início do jogo
+        UpdateHearts(); // Atualiza os coraï¿½ï¿½es no inï¿½cio do jogo
         gameManager = FindObjectOfType<GameManager>();
     }
 
@@ -57,29 +57,42 @@ public class Player : MonoBehaviour {
         }
     }
 
-    void Shoot() {
-        if (Time.time >= _nextShoot && Input.anyKeyDown) { // Atira quando qualquer tecla é pressionada
+
+    void Shoot(){
+        if (Time.time >= _nextShoot && (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick1Button1) || Input.GetKeyDown(KeyCode.Joystick1Button3) || Input.GetKeyDown(KeyCode.Joystick1Button2)))
+        {
+
             _nextShoot = Time.time + shootCadence;
 
-            // Determinar direção do tiro
-            Vector2 direction = Vector2.zero;
-
-            if (Input.GetKey(KeyCode.Keypad1)) direction = new Vector2(-1, -1); // Diagonal esquerda baixo
-            if (Input.GetKey(KeyCode.Keypad4)) direction = Vector2.left; // Esquerda
-            if (Input.GetKey(KeyCode.Keypad2)) direction = Vector2.right; // Direita
-            if (Input.GetKey(KeyCode.Keypad5)) direction = Vector2.down; // Baixo
-
-            if (direction != Vector2.zero) {
-                Vector3 spawnPosition = transform.position + new Vector3(direction.x, direction.y, 0f);
-                GameObject newBullet = Instantiate(shoot, spawnPosition, Quaternion.identity);
-                Rigidbody2D bulletRB = newBullet.GetComponent<Rigidbody2D>();
-                bulletRB.velocity = direction * shootSpeed;
-                Destroy(newBullet, 2); // Destruir após 2 segundos
+            Vector2 direction = Vector2.left;
+            // if(Input.GetKeyDown(KeyCode.Keypad1)){
+            //     direction = Vector2.left;
+            // }
+            if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKey(KeyCode.Joystick1Button2) && Input.GetKeyDown(KeyCode.Joystick1Button1)){
+                direction = Vector2.down + Vector2.right;
+            }
+            else if(Input.GetKey(KeyCode.Keypad2) && Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKey(KeyCode.Joystick1Button2) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
+                direction = Vector2.up + Vector2.right;
+            }
+            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad4)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button1)){
+                direction = Vector2.up + Vector2.left;
+            }
+            else if(Input.GetKey(KeyCode.Keypad1) && Input.GetKeyDown(KeyCode.Keypad5)  || Input.GetKey(KeyCode.Joystick1Button3) && Input.GetKeyDown(KeyCode.Joystick1Button0)){
+                direction = Vector2.down + Vector2.left;
+            }
+            else if(Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Joystick1Button2)){
+                direction = Vector2.right;
+            }
+            else if(Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Joystick1Button0)){
+                direction = Vector2.up;
+            }
+            else if(Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Joystick1Button1)){
+                direction = Vector2.down;
             }
         }
     }
 
-    // Detectar colisão com inimigos
+    // Detectar colisï¿½o com inimigos
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("InimigoEspecial") && !isInvulnerable) {
             TakeDamage();
@@ -93,7 +106,7 @@ public class Player : MonoBehaviour {
         if (currentHealth <= 0) {
             Die(); // Se a vida chegar a zero, chama Die()
         } else {
-            StartCoroutine(BecomeInvulnerable()); // Pisca e se torna invulnerável
+            StartCoroutine(BecomeInvulnerable()); // Pisca e se torna invulnerï¿½vel
         }
     }
 
@@ -105,22 +118,27 @@ public class Player : MonoBehaviour {
 
     IEnumerator BecomeInvulnerable() {
         isInvulnerable = true;
-        playerCollider.enabled = false; // Desativa o Collider para evitar colisões
+        playerCollider.enabled = false; // Desativa o Collider para evitar colisï¿½es
 
         for (int i = 0; i < 5; i++) {
             spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f); // Diminuir a opacidade
             yield return new WaitForSeconds(0.2f);
-            spriteRenderer.color = new Color(1f, 1f, 1f, 1f); // Voltar à opacidade total
+            spriteRenderer.color = new Color(1f, 1f, 1f, 1f); // Voltar ï¿½ opacidade total
             yield return new WaitForSeconds(0.2f);
         }
 
-        playerCollider.enabled = true; // Reativa o Collider após o período de invulnerabilidade
+        playerCollider.enabled = true; // Reativa o Collider apï¿½s o perï¿½odo de invulnerabilidade
         isInvulnerable = false;
     }
 
+
     void Die() {
-        gameManager.SaveScore(); // Chama o método SaveScore do GameManager
+        gameManager.SaveScore(); // Chama o mï¿½todo SaveScore do GameManager
         SceneManager.LoadScene("Menu"); // Muda para a cena do Menu
+    }
+
+    void FixScreenBounds(){
+        // if(_rb2d.transform.position >)
     }
 
 }
