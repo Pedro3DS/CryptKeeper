@@ -115,4 +115,17 @@ public class Player : MonoBehaviour {
         gameManager.SaveScore(); 
         SceneManager.LoadScene("Menu"); 
     }
+
+    public void TakeDamage(int amount) {
+        if (!isInvulnerable) {
+            currentHealth -= amount;
+            UpdateHearts();
+
+            if (currentHealth <= 0) {
+                Die();
+            } else {
+                StartCoroutine(BecomeInvulnerable());
+            }
+        }
+    }
 }
