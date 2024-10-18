@@ -83,11 +83,12 @@ public class NameInput : MonoBehaviour {
         letters = savedName.ToCharArray();
     }
 
-    private void DisplayRanking() {
-        rankingText.text = ""; 
-        var highScores = HighScoreManager.LoadHighScores(); 
+    public void DisplayRanking() {
+        rankingText.text = ""; // Limpa o texto atual
+        var highScores = HighScoreManager.LoadHighScores(); // Carrega os high scores
         for (int i = 0; i < highScores.Count; i++) {
-            rankingText.text += (i + 1) + ". " + highScores[i].name + ": " + highScores[i].score + "\n"; 
+            rankingText.text += (i + 1) + ". " + highScores[i].name + ": " + highScores[i].score + "\n";
         }
     }
+
 }
