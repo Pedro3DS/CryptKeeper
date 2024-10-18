@@ -839,7 +839,7 @@ MonoBehaviour:
   name: {fileID: 736227726}
   scoreText: {fileID: 435598662}
   hordaText: {fileID: 1267529271}
-  hordaAtual: 1
+  hordaAtual: 4
   inimigosPorHorda: 5
   spawnInterval: 1
   screenWidth: 20
