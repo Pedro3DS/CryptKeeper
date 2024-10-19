@@ -20,7 +20,7 @@ public class InimigoTerrestre : MonoBehaviour {
             Vector3 direcao = (player.position - transform.position).normalized;
 
             
-            transform.position += direcao * velocidade * Time.deltaTime;
+            gameObject.GetComponent<Rigidbody2D>().velocity = direcao * velocidade * Time.deltaTime;
 
            
             if (direcao.x > 0 && spriteRenderer.flipX == true) {
