@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8627989926451634827}
+  - component: {fileID: 413593200519973394}
   - component: {fileID: 8203708864605944518}
   - component: {fileID: 4971615371861837019}
   - component: {fileID: 6528866307593717938}
@@ -36,6 +37,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &413593200519973394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7269584566451559847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff726b4c803355144bf5ba69436c77d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 0
 --- !u!212 &8203708864605944518
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101,8 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 2
-  maxHealth: 5
-  scoreValue: 3
+  maxHealth: 2
+  scoreValue: 2
 --- !u!95 &6528866307593717938
 Animator:
   serializedVersion: 5

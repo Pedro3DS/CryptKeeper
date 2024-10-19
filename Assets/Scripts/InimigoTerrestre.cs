@@ -9,7 +9,6 @@ public class InimigoTerrestre : MonoBehaviour {
         
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
-       
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
