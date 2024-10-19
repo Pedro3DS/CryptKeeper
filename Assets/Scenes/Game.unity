@@ -1155,6 +1155,10 @@ PrefabInstance:
       value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4720404218947528888, guid: 2d06923934415f14fb3ca342897467ac, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 1826718718}
+    - target: {fileID: 4720404218947528888, guid: 2d06923934415f14fb3ca342897467ac, type: 3}
       propertyPath: powerUpField
       value: 
       objectReference: {fileID: 428731168}
