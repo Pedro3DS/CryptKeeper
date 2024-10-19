@@ -68,14 +68,10 @@ public class Player : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector2 move = new Vector2(horizontal, vertical);
-        if (move.magnitude > 1)
-        {
-            move.Normalize();
-        }
+        Vector3 move = new Vector3(horizontal, vertical).normalized;
         _rb2d.velocity = move * moveSpeed;
 
-        if (move != Vector2.zero) {
+        if (move != Vector3.zero) {
             lastMoveDirection = move; 
         }
 
