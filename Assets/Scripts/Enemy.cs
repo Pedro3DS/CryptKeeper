@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-    public enum EnemyType { Terrestre, Voador, Especial };
+    public enum EnemyType { Terrestre, Voador, Especial, Boss };
     public EnemyType enemyType;
 
     public int maxHealth;
@@ -11,8 +11,25 @@ public class Enemy : MonoBehaviour {
     private GameManager gameManager;
 
     void Start() {
-        currentHealth = maxHealth;
         gameManager = FindObjectOfType<GameManager>();
+    }
+
+
+    public void AjustarVidaInicial() {
+        if (enemyType == EnemyType.Boss) {
+            maxHealth = 10;  
+            scoreValue = 10;
+        } else {
+            maxHealth = 1;   
+            scoreValue = 1;  
+        }
+    }
+  
+    public void AumentarDificuldade(int vidaExtra, int pontosExtra) {
+        maxHealth += vidaExtra;
+        currentHealth = maxHealth; 
+        scoreValue += pontosExtra;  
+        Debug.Log($"Aumentando Dificuldade: Vida = {maxHealth}, Pontos = {scoreValue}");
     }
 
     public void TakeDamage(int damage) {
@@ -23,12 +40,17 @@ public class Enemy : MonoBehaviour {
     }
 
     void Die() {
-        // Adiciona pontuação ao jogador
+       
         if (gameManager != null) {
             gameManager.AddScore(scoreValue);
         }
 
-        // Destroi o inimigo
+       
+        if (enemyType == EnemyType.Boss) {
+            gameManager.BossDied();
+        }
+
+       
         Destroy(gameObject);
     }
 }

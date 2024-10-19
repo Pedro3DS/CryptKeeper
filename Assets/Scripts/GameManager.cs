@@ -7,25 +7,38 @@ public class GameManager : MonoBehaviour {
     public GameObject inimigoTerrestrePrefab;
     public GameObject inimigoVoadorPrefab;
     public GameObject inimigoEspecialPrefab;
+    public GameObject bossPrefab;
     public TextMeshProUGUI name;
-    public TextMeshProUGUI scoreText; // Referência ao TextMeshPro para pontuação
-    public TextMeshProUGUI hordaText; // Referência ao TextMeshPro para a horda atual
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI hordaText;
+    public TextMeshProUGUI countdownText; 
 
     public int hordaAtual = 1;
     public int inimigosPorHorda = 5;
     public float spawnInterval = 1.0f;
     public float screenWidth = 20f;
     public float screenHeight = 10f;
+    public int level = 1;
+
     private bool hordaAtiva = false;
     private bool inimigoEspecialSpawnado = false;
     private int inimigosEspeciaisRestantes = 0;
     private int playerScore = 0;
 
+    private int incrementoVida = 1;
+    private int incrementoPontos = 1;
+    private bool bossSpawnado = false;
+
+    
+    private int bossIncrementoVida = 10; 
+    private int bossIncrementoPontos = 10; 
+
     void Start() {
         LoadPlayerName();
         StartCoroutine(GerenciarHordas());
         UpdateScoreText();
-        UpdateHordaText(); // Atualiza a horda inicial
+        UpdateHordaText();
+        countdownText.gameObject.SetActive(false); 
     }
 
     void LoadPlayerName() {
@@ -35,26 +48,15 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void Update() { }
-
-    // Logica de matar e aumentar os pontos
     public void AddScore(int points) {
         playerScore += points;
         Debug.Log("Pontuação atual: " + playerScore);
         UpdateScoreText();
     }
 
-    // Logica de morte coloque aqui
     public void PlayerDied() {
-        SaveScore(); // Mantenha essa linha
-        SceneManager.LoadScene("Menu"); // Mova essa linha para o final
-    }
-
-    private void UpdateRankingText() {
-        NameInput nameInput = FindObjectOfType<NameInput>();
-        if (nameInput != null) {
-            nameInput.DisplayRanking(); // Atualiza o ranking com a nova pontuação
-        }
+        SaveScore();
+        SceneManager.LoadScene("Menu");
     }
 
     public void SaveScore() {
@@ -79,6 +81,19 @@ public class GameManager : MonoBehaviour {
         while (true) {
             hordaAtiva = true;
 
+            
+            if (hordaAtual % 10 == 0 && !bossSpawnado) {
+                
+                Enemy[] inimigos = FindObjectsOfType<Enemy>();
+                foreach (Enemy inimigo in inimigos) {
+                    Destroy(inimigo.gameObject);
+                }
+                SpawnBoss();
+                yield return new WaitForSeconds(5.0f);
+                continue;
+            }
+
+           
             int terrestres = inimigosPorHorda;
             int voadores = 0;
 
@@ -103,24 +118,62 @@ public class GameManager : MonoBehaviour {
 
             yield return new WaitForSeconds(5.0f);
 
-            hordaAtual++;
+            hordaAtual++; 
+
+           
             inimigosPorHorda += 3;
 
-            UpdateHordaText(); // Atualiza o texto da horda após a mudança
+            UpdateHordaText();
         }
     }
+
 
     void SpawnInimigoTerrestre() {
         float ladoSpawn = Random.Range(0, 2) == 0 ? -screenWidth / 2 : screenWidth / 2;
         float randomY = Random.Range(-screenHeight / 2, screenHeight / 2);
         Vector3 spawnPosition = new Vector3(ladoSpawn, randomY, 0);
-        Instantiate(inimigoTerrestrePrefab, spawnPosition, Quaternion.identity);
+        Enemy inimigo = Instantiate(inimigoTerrestrePrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+
+        
+        inimigo.AjustarVidaInicial(); 
     }
 
     void SpawnInimigoVoador() {
         float randomX = Random.Range(-screenWidth / 2, screenWidth / 2);
         Vector3 spawnPosition = new Vector3(randomX, screenHeight / 2 + 2, 0);
-        Instantiate(inimigoVoadorPrefab, spawnPosition, Quaternion.identity);
+        Enemy inimigo = Instantiate(inimigoVoadorPrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+
+       
+        inimigo.AjustarVidaInicial(); 
+    }
+
+    void SpawnInimigoEspecial() {
+        float randomX = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x, Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x);
+        float randomY = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y, Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y);
+        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
+        Enemy inimigo = Instantiate(inimigoEspecialPrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+
+        inimigo.AjustarVidaInicial(); 
+    }
+
+    void SpawnBoss() {
+        StopAllCoroutines();
+
+        
+        Vector3 spawnPosition = new Vector3(0, 0, 0); 
+        Enemy boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+
+       
+        boss.AumentarDificuldade(bossIncrementoVida, bossIncrementoPontos); 
+
+        bossSpawnado = true;
+    }
+    public void BossDied() {
+        Debug.Log("Boss foi derrotado! Iniciando contagem regressiva.");
+        StartCoroutine(ContagemRegressivaParaReinicio());
+        level++; 
+                
+        AjustarDificuldadeInimigos(); 
     }
 
     IEnumerator GerenciarInimigosEspeciais() {
@@ -145,10 +198,50 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void SpawnInimigoEspecial() {
-        float randomX = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x, Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x);
-        float randomY = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y, Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y);
-        Vector3 spawnPosition = new Vector3(randomX, randomY, 0);
-        Instantiate(inimigoEspecialPrefab, spawnPosition, Quaternion.identity);
+
+    IEnumerator ContagemRegressivaParaReinicio() {
+        Debug.Log("Iniciando contagem regressiva para reinício.");
+        countdownText.gameObject.SetActive(true); 
+        for (int i = 3; i > 0; i--) {
+            countdownText.text = i.ToString(); 
+            yield return new WaitForSeconds(1.0f);
+        }
+        countdownText.text = "Vai!"; 
+        yield return new WaitForSeconds(1.0f); 
+        countdownText.gameObject.SetActive(false); 
+
+      
+        hordaAtual++; 
+        inimigosPorHorda += 3;
+        UpdateHordaText(); 
+        StartCoroutine(GerenciarHordas()); 
     }
+
+    void ResetarHordas() {
+        Debug.Log("Resetando hordas.");
+        hordaAtual = 1;
+        inimigosPorHorda = 5;
+
+        
+        Enemy[] inimigos = FindObjectsOfType<Enemy>();
+        foreach (Enemy inimigo in inimigos) {
+            Destroy(inimigo.gameObject);
+        }
+
+        
+        bossSpawnado = false;
+        UpdateHordaText();
+    }
+    void AjustarDificuldadeInimigos() {
+       
+        Enemy[] inimigos = FindObjectsOfType<Enemy>();
+        foreach (Enemy inimigo in inimigos) {
+            if (inimigo.enemyType == Enemy.EnemyType.Boss) {
+                inimigo.AumentarDificuldade(10, 10);
+            } else {
+                inimigo.AumentarDificuldade(1, 1);
+            }
+        }
+    }
+
 }

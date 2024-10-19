@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
-  maxHealth: 2
+  maxHealth: 1
   scoreValue: 2
 --- !u!114 &4746165995136224644
 MonoBehaviour:
