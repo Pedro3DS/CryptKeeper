@@ -6,6 +6,8 @@ TagManager:
   tags:
   - InimigoEspecial
   - Boss
+  - Shield
+  - DropItems
   layers:
   - Default
   - TransparentFX

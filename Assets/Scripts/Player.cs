@@ -1,19 +1,20 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
     private Rigidbody2D _rb2d;
     [SerializeField] private GameObject shoot;
     [SerializeField] private float moveSpeed;
     public float shootSpeed;
-
     [SerializeField] private float shootCadence = 0.5f;
     private float _nextShoot = 0f;
+    public bool canTakeDamage = true;
 
     [SerializeField] private int maxHealth = 3; 
     private int currentHealth;
-
     public GameObject[] heartSprites; 
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
@@ -21,9 +22,23 @@ public class Player : MonoBehaviour {
 
     private GameManager gameManager;
 
+    [SerializeField] private Camera mainCamera;
+    private Vector2 _screenBounds;
     private Vector2 lastMoveDirection; 
 
+    [Header("Power Ups")]
+    private bool _canUseSuper = true;
+    [SerializeField] private float superDuration;
+    [SerializeField] private Slider superSlider;
+    [SerializeField] private Image powerUpField;
+    [SerializeField] private GameObject shield;
+    [SerializeField] private Sprite shieldSprite;
+
     void Start() {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         playerCollider = gameObject.GetComponent<Collider2D>();
@@ -32,18 +47,33 @@ public class Player : MonoBehaviour {
         gameManager = FindObjectOfType<GameManager>();
         lastMoveDirection = Vector2.right; 
     }
-
-    void Update() {
-        Movement();
-        Shoot();
+    void UpdateHearts() {
+        for (int i = 0; i < heartSprites.Length; i++) {
+            heartSprites[i].SetActive(i < currentHealth);
+        }
     }
 
+    void Update()
+    {
+        
+        FixScreenBounds();
+        Movement();
+        Shoot();
+        if(Input.GetKeyDown(KeyCode.Space)){
+            StartCoroutine(UseSuper());
+        }
+    }
     void Movement() {
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector2 move = new Vector2(horizontal, vertical).normalized;
-        _rb2d.velocity = move * moveSpeed * Time.deltaTime;
+        Vector2 move = new Vector2(horizontal, vertical);
+        if (move.magnitude > 1)
+        {
+            move.Normalize();
+        }
+        _rb2d.velocity = move * moveSpeed;
 
         if (move != Vector2.zero) {
             lastMoveDirection = move; 
@@ -61,7 +91,6 @@ public class Player : MonoBehaviour {
             gameObject.GetComponent<Animator>().SetBool("walk", false);
         }
     }
-
     void Shoot() {
         if (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) {
             _nextShoot = Time.time + shootCadence;
@@ -71,31 +100,67 @@ public class Player : MonoBehaviour {
             newShoot.GetComponent<Rigidbody2D>().velocity = lastMoveDirection * shootSpeed;
         }
     }
+    void FixScreenBounds(){
+        _screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+        Vector3 playerPosition = transform.position;
+        playerPosition.x = Mathf.Clamp(playerPosition.x, _screenBounds.x * -1 + spriteRenderer.bounds.extents.x, _screenBounds.x - spriteRenderer.bounds.extents.x);
+        playerPosition.y = Mathf.Clamp(playerPosition.y, _screenBounds.y * -1 + spriteRenderer.bounds.extents.y, _screenBounds.y - spriteRenderer.bounds.extents.y);
+        _rb2d.transform.position = playerPosition;
+    }
 
-    
+    IEnumerator UseSuper(){
+        if(_canUseSuper){
+            _canUseSuper = false;
+            superSlider.value = 0;
+            foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("InimigoEspecial")){
+                enemy.GetComponent<Enemy>().Die();
+            }
+            for(int i = 0; i <= superDuration; i++){
+                superSlider.value = i;
+                yield return new WaitForSeconds(1);
+            }
+            _canUseSuper = true;
+
+        }
+
+    }
+
+    void CreateShield(){
+        Instantiate(shield, gameObject.transform);
+
+    }
+
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("InimigoEspecial") && !isInvulnerable) {
             TakeDamage();
         }
+        
+    }
+    
+    void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("Shield")) {
+            Destroy(other.gameObject);
+            CreateShield();
+            // ChangePowerUpImage(shieldSprite);
+        }
     }
 
     void TakeDamage() {
-        currentHealth--;
-        UpdateHearts();
+        if(canTakeDamage){
+            currentHealth--;
+            UpdateHearts();
 
-        if (currentHealth <= 0) {
-            Die(); 
-        } else {
-            StartCoroutine(BecomeInvulnerable()); 
+            if (currentHealth <= 0) {
+                Die(); 
+            } else {
+                StartCoroutine(BecomeInvulnerable()); 
+            }
         }
     }
-
-    void UpdateHearts() {
-        for (int i = 0; i < heartSprites.Length; i++) {
-            heartSprites[i].SetActive(i < currentHealth);
-        }
+    void ChangePowerUpImage(Sprite powerUpSprite){
+        powerUpField.preserveAspect = true;
+        powerUpField.sprite = powerUpSprite;
     }
-
     IEnumerator BecomeInvulnerable() {
         isInvulnerable = true;
         playerCollider.enabled = false;
@@ -110,12 +175,10 @@ public class Player : MonoBehaviour {
         playerCollider.enabled = true;
         isInvulnerable = false;
     }
-
     void Die() {
         gameManager.SaveScore(); 
         SceneManager.LoadScene("Menu"); 
     }
-
     public void TakeDamage(int amount) {
         if (!isInvulnerable) {
             currentHealth -= amount;
@@ -128,4 +191,5 @@ public class Player : MonoBehaviour {
             }
         }
     }
+
 }
