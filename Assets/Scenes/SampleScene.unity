@@ -1298,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4720404218947528888, guid: 2d06923934415f14fb3ca342897467ac, type: 3}
       propertyPath: moveSpeed
-      value: 850
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4720404218947528888, guid: 2d06923934415f14fb3ca342897467ac, type: 3}
       propertyPath: shootCadence
