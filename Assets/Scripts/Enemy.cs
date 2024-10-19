@@ -10,6 +10,10 @@ public class Enemy : MonoBehaviour {
 
     private GameManager gameManager;
 
+    [SerializeField] private GameObject[] dropItems;
+
+    [SerializeField] private float dropChance = 20f;
+
     void Start() {
         currentHealth = maxHealth;
         gameManager = FindObjectOfType<GameManager>();
@@ -22,13 +26,24 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    void Die() {
-        // Adiciona pontuação ao jogador
+    public void Die() {
+        // Adiciona pontuaï¿½ï¿½o ao jogador
         if (gameManager != null) {
             gameManager.AddScore(scoreValue);
         }
 
-        // Destroi o inimigo
+        if(GameObject.FindGameObjectsWithTag("Shield").Length <= 0 || GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().canTakeDamage != false){
+            float randomValue = Random.Range(0f, 100f);
+
+            if(randomValue <= dropChance)
+            {
+                int randomIndex = Random.Range(0, dropItems.Length);
+                GameObject itemToDrop = dropItems[randomIndex];
+                Instantiate(itemToDrop, transform.position, Quaternion.identity);
+            }
+
+        }
+
         Destroy(gameObject);
     }
 }

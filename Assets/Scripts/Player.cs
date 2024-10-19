@@ -9,14 +9,12 @@ public class Player : MonoBehaviour {
     [SerializeField] private GameObject shoot;
     [SerializeField] private float moveSpeed;
     public float shootSpeed;
-
     [SerializeField] private float shootCadence = 0.5f;
     private float _nextShoot = 0f;
-    private bool _canTakeDamage = true;
+    public bool canTakeDamage = true;
 
     [SerializeField] private int maxHealth = 3; 
     private int currentHealth;
-
     public GameObject[] heartSprites; 
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
@@ -26,15 +24,15 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private Camera mainCamera;
     private Vector2 _screenBounds;
+    private Vector2 lastMoveDirection; 
 
     [Header("Power Ups")]
-    private string _powerUp;
+    private bool _canUseSuper = true;
+    [SerializeField] private float superDuration;
+    [SerializeField] private Slider superSlider;
     [SerializeField] private Image powerUpField;
     [SerializeField] private GameObject shield;
     [SerializeField] private Sprite shieldSprite;
-
-
-    private Vector2 lastMoveDirection; 
 
     void Start() {
         if (mainCamera == null)
@@ -49,8 +47,12 @@ public class Player : MonoBehaviour {
         gameManager = FindObjectOfType<GameManager>();
         lastMoveDirection = Vector2.right; 
     }
+    void UpdateHearts() {
+        for (int i = 0; i < heartSprites.Length; i++) {
+            heartSprites[i].SetActive(i < currentHealth);
+        }
+    }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -58,10 +60,9 @@ public class Player : MonoBehaviour {
         Movement();
         Shoot();
         if(Input.GetKeyDown(KeyCode.Space)){
-            UsePowerUp();
+            StartCoroutine(UseSuper());
         }
     }
-
     void Movement() {
         
         float horizontal = Input.GetAxis("Horizontal");
@@ -86,7 +87,6 @@ public class Player : MonoBehaviour {
             gameObject.GetComponent<Animator>().SetBool("walk", false);
         }
     }
-
     void Shoot() {
         if (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) {
             _nextShoot = Time.time + shootCadence;
@@ -96,8 +96,36 @@ public class Player : MonoBehaviour {
             newShoot.GetComponent<Rigidbody2D>().velocity = lastMoveDirection * shootSpeed;
         }
     }
+    void FixScreenBounds(){
+        _screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
+        Vector3 playerPosition = transform.position;
+        playerPosition.x = Mathf.Clamp(playerPosition.x, _screenBounds.x * -1 + spriteRenderer.bounds.extents.x, _screenBounds.x - spriteRenderer.bounds.extents.x);
+        playerPosition.y = Mathf.Clamp(playerPosition.y, _screenBounds.y * -1 + spriteRenderer.bounds.extents.y, _screenBounds.y - spriteRenderer.bounds.extents.y);
+        _rb2d.transform.position = playerPosition;
+    }
 
-    
+    IEnumerator UseSuper(){
+        if(_canUseSuper){
+            superSlider.value = 0;
+            _canUseSuper = false;
+            foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("InimigoEspecial")){
+                enemy.GetComponent<Enemy>().Die();
+            }
+            for(int i = 0; i <= superDuration; i++){
+                superSlider.value = i;
+                yield return new WaitForSeconds(1);
+            }
+            _canUseSuper = true;
+
+        }
+
+    }
+
+    void CreateShield(){
+        Instantiate(shield, gameObject.transform);
+
+    }
+
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("InimigoEspecial") && !isInvulnerable) {
             TakeDamage();
@@ -108,47 +136,27 @@ public class Player : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Shield")) {
             Destroy(other.gameObject);
-            // CreateShield();
-            ChangePowerUpImage(shieldSprite);
-            _powerUp = "shield";
-        }
-    }
-
-    void CreateShield(){
-        Instantiate(shield, gameObject.transform);
-
-    }
-
-    void UsePowerUp(){
-        if(_powerUp == "shield"){
             CreateShield();
-            _powerUp = " ";
+            // ChangePowerUpImage(shieldSprite);
         }
     }
 
+    void TakeDamage() {
+        if(canTakeDamage){
+            currentHealth--;
+            UpdateHearts();
+
+            if (currentHealth <= 0) {
+                Die(); 
+            } else {
+                StartCoroutine(BecomeInvulnerable()); 
+            }
+        }
+    }
     void ChangePowerUpImage(Sprite powerUpSprite){
         powerUpField.preserveAspect = true;
         powerUpField.sprite = powerUpSprite;
     }
-
-    void TakeDamage() {
-        if(_canTakeDamage){
-            currentHealth--;
-            UpdateHearts();
-
-        if (currentHealth <= 0) {
-            Die(); 
-        } else {
-            StartCoroutine(BecomeInvulnerable()); 
-        }
-    }
-
-    void UpdateHearts() {
-        for (int i = 0; i < heartSprites.Length; i++) {
-            heartSprites[i].SetActive(i < currentHealth);
-        }
-    }
-
     IEnumerator BecomeInvulnerable() {
         isInvulnerable = true;
         playerCollider.enabled = false;
@@ -163,18 +171,9 @@ public class Player : MonoBehaviour {
         playerCollider.enabled = true;
         isInvulnerable = false;
     }
-
     void Die() {
         gameManager.SaveScore(); 
         SceneManager.LoadScene("Menu"); 
-    }
-
-    void FixScreenBounds(){
-        _screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-        Vector3 playerPosition = transform.position;
-        playerPosition.x = Mathf.Clamp(playerPosition.x, _screenBounds.x * -1 + spriteRenderer.bounds.extents.x, _screenBounds.x - spriteRenderer.bounds.extents.x);
-        playerPosition.y = Mathf.Clamp(playerPosition.y, _screenBounds.y * -1 + spriteRenderer.bounds.extents.y, _screenBounds.y - spriteRenderer.bounds.extents.y);
-        _rb2d.transform.position = playerPosition;
     }
     public void TakeDamage(int amount) {
         if (!isInvulnerable) {
@@ -188,4 +187,5 @@ public class Player : MonoBehaviour {
             }
         }
     }
+
 }
