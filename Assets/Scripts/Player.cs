@@ -106,8 +106,8 @@ public class Player : MonoBehaviour {
 
     IEnumerator UseSuper(){
         if(_canUseSuper){
-            superSlider.value = 0;
             _canUseSuper = false;
+            superSlider.value = 0;
             foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("InimigoEspecial")){
                 enemy.GetComponent<Enemy>().Die();
             }
