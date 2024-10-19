@@ -846,7 +846,6 @@ MonoBehaviour:
   spawnInterval: 1
   screenWidth: 20
   screenHeight: 10
-  level: 1
 --- !u!4 &854133848
 Transform:
   m_ObjectHideFlags: 0

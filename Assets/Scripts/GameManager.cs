@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     public float spawnInterval = 1.0f;
     public float screenWidth = 20f;
     public float screenHeight = 10f;
-    public int level = 1;
+   
 
     private bool hordaAtiva = false;
     private bool inimigoEspecialSpawnado = false;
@@ -83,14 +83,15 @@ public class GameManager : MonoBehaviour {
 
             
             if (hordaAtual % 10 == 0 && !bossSpawnado) {
-                
+               
                 Enemy[] inimigos = FindObjectsOfType<Enemy>();
                 foreach (Enemy inimigo in inimigos) {
                     Destroy(inimigo.gameObject);
                 }
                 SpawnBoss();
-                yield return new WaitForSeconds(5.0f);
-                continue;
+                yield return new WaitForSeconds(5.0f); 
+                bossSpawnado = true; 
+                continue; 
             }
 
            
@@ -120,8 +121,10 @@ public class GameManager : MonoBehaviour {
 
             hordaAtual++; 
 
-           
+          
             inimigosPorHorda += 3;
+
+            bossSpawnado = false; 
 
             UpdateHordaText();
         }
@@ -171,8 +174,12 @@ public class GameManager : MonoBehaviour {
     public void BossDied() {
         Debug.Log("Boss foi derrotado! Iniciando contagem regressiva.");
         StartCoroutine(ContagemRegressivaParaReinicio());
-        level++; 
-                
+        
+
+        
+        bossSpawnado = false;
+
+      
         AjustarDificuldadeInimigos(); 
     }
 
