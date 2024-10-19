@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
@@ -9,6 +10,7 @@ public class Enemy : MonoBehaviour {
     private int currentHealth;
 
     private GameManager gameManager;
+    private SpriteRenderer spriteRenderer; 
 
     [SerializeField] private GameObject[] dropItems;
 
@@ -16,46 +18,52 @@ public class Enemy : MonoBehaviour {
 
     void Start() {
         gameManager = FindObjectOfType<GameManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); 
     }
-
 
     public void AjustarVidaInicial() {
         if (enemyType == EnemyType.Boss) {
-            maxHealth = 10;  
+            maxHealth = 10;
             scoreValue = 10;
         } else {
-            maxHealth = 1;   
-            scoreValue = 1;  
+            maxHealth = 1;
+            scoreValue = 1;
         }
+        currentHealth = maxHealth; 
     }
-  
+
     public void AumentarDificuldade(int vidaExtra, int pontosExtra) {
         maxHealth += vidaExtra;
-        currentHealth = maxHealth; 
-        scoreValue += pontosExtra;  
+        currentHealth = maxHealth;
+        scoreValue += pontosExtra;
         Debug.Log($"Aumentando Dificuldade: Vida = {maxHealth}, Pontos = {scoreValue}");
     }
 
     public void TakeDamage(int damage) {
         currentHealth -= damage;
+
+        StartCoroutine(FlashRed()); 
+
         if (currentHealth <= 0) {
             Die();
         }
     }
 
+    IEnumerator FlashRed() {
 
+        spriteRenderer.color = Color.red; 
+        yield return new WaitForSeconds(0.1f); 
+        spriteRenderer.color = Color.white; 
+    }
 
     public void Die() {
-        // Adiciona pontua��o ao jogador
         if (gameManager != null) {
             gameManager.AddScore(scoreValue);
         }
 
-
         if (enemyType == EnemyType.Boss) {
             gameManager.BossDied();
         }
-
 
         if (dropItems.Length >= 1) {
             if (GameObject.FindGameObjectsWithTag("Shield").Length <= 0 && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().canTakeDamage != false) {
@@ -66,9 +74,7 @@ public class Enemy : MonoBehaviour {
                     GameObject itemToDrop = dropItems[randomIndex];
                     Instantiate(itemToDrop, transform.position, Quaternion.identity);
                 }
-
             }
-
         }
 
         Destroy(gameObject);
