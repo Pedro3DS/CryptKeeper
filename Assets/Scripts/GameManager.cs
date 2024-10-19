@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour {
                 StartCoroutine(GerenciarInimigosEspeciais());
             }
 
-            yield return new WaitForSeconds(5.0f);
+            yield return new WaitForSeconds(0.1f);//TODO deixar em 5
 
             hordaAtual++; 
 
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour {
         StopAllCoroutines();
 
         
-        Vector3 spawnPosition = new Vector3(0, 0, 0); 
+        Vector3 spawnPosition = new Vector3(12, 0, 0); 
         Enemy boss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
 
        
