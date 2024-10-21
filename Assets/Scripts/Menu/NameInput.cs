@@ -29,7 +29,7 @@ public class NameInput : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Return)) {
             SavePlayerName(); 
-            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene"); 
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game"); 
         }
     }
 
