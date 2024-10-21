@@ -105,7 +105,7 @@ MonoBehaviour:
   dashSpeed: 10
   shootingInterval: 2
   projectile: {fileID: 4259884682701938600, guid: 6ee2ba8fe0132ac4db2ca4703a7d0cf0, type: 3}
-  projectileCount: 10
+  projectileCount: 30
   waitTimeAfterShot: 1
   firePoint: {fileID: 7234287539836424591}
   leftEdge: {x: -12, y: 0, z: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 3
-  maxHealth: 1
+  maxHealth: 50
   scoreValue: 20
   dropItems: []
   dropChance: 20
