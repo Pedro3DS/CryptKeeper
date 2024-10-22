@@ -16,7 +16,8 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private int maxHealth = 3; 
     private int currentHealth;
-    public GameObject[] heartSprites; 
+    public Image heartSprite;
+    [SerializeField] private GameObject heatsField; 
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider;
@@ -50,8 +51,18 @@ public class Player : MonoBehaviour {
         lastMoveDirection = Vector2.right; 
     }
     void UpdateHearts() {
-        for (int i = 0; i < heartSprites.Length; i++) {
-            heartSprites[i].SetActive(i < currentHealth);
+        // for (var i = heatsField.transform.childCount - 1; i >= 0; i--)
+        // {
+        //     Destroy(heatsField.GetChild(i));
+        // }
+        if(currentHealth <= 10){
+
+            for (int i = 0; i <= currentHealth; i++) {
+                Instantiate(heartSprite, heatsField.transform);
+                // heartSprites[i].SetActive(i < currentHealth);
+            }
+        }else{
+            currentHealth = 10;
         }
     }
 
