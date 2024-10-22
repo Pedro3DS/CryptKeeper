@@ -1005,7 +1005,6 @@ GameObject:
   - component: {fileID: 1183392081}
   - component: {fileID: 1183392080}
   - component: {fileID: 1183392079}
-  - component: {fileID: 1183392084}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1173,21 +1172,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 613932035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1183392084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183392078}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce088cc06f4d94742b65f970f4c9667f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shoot: {fileID: 2940331612354814200, guid: 94642cdbfddaa6143bd08f753abdc3c6, type: 3}
-  shootSpeed: 20
-  shootCadence: 0.1
 --- !u!1 &1292916118
 GameObject:
   m_ObjectHideFlags: 0

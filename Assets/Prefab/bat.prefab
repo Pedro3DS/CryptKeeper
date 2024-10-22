@@ -105,6 +105,8 @@ MonoBehaviour:
   enemyType: 1
   maxHealth: 1
   scoreValue: 2
+  dropItems: []
+  dropChance: 20
 --- !u!114 &4746165995136224644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 2
-  distanciaAtaque: 5
+  distanciaAtaque: 3
   projetilPrefab: {fileID: 4259884682701938600, guid: 6ee2ba8fe0132ac4db2ca4703a7d0cf0, type: 3}
   intervaloTiro: 4
   pontoDisparo: {fileID: 8939465863402631422}
