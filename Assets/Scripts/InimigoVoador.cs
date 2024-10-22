@@ -31,7 +31,7 @@ public class InimigoVoador : MonoBehaviour {
         if (Time.time >= tempoUltimoTiro + intervaloTiro) {
             Vector3 direcao = (player.position - pontoDisparo.position).normalized;
             GameObject projetil = Instantiate(projetilPrefab, pontoDisparo.position, Quaternion.identity);
-            projetil.GetComponent<Rigidbody2D>().velocity = direcao * 10f;
+            projetil.GetComponent<Rigidbody2D>().velocity = direcao * 5f;
             tempoUltimoTiro = Time.time;
         }
     }

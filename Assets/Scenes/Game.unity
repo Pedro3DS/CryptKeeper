@@ -2124,7 +2124,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a09e0f72528cf774ea5b63f20e464cd9, type: 3}
     - target: {fileID: 4720404218947528888, guid: 2d06923934415f14fb3ca342897467ac, type: 3}
       propertyPath: shootCadence
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4720404218947528888, guid: 2d06923934415f14fb3ca342897467ac, type: 3}
       propertyPath: superDuration
@@ -2469,8 +2469,8 @@ MonoBehaviour:
   scoreText: {fileID: 578793722}
   hordaText: {fileID: 742050642}
   countdownText: {fileID: 687211777}
-  hordaAtual: 5
-  inimigosPorHorda: 3
+  hordaAtual: 1
+  inimigosPorHorda: 4
   spawnInterval: 2
   screenWidth: 20
   screenHeight: 10
