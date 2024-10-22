@@ -25,7 +25,6 @@ public class Player : MonoBehaviour {
     [SerializeField] private Camera mainCamera;
     private Vector2 _screenBounds;
     private Vector2 lastMoveDirection; 
-    [SerializeField] private float boundsLimit;
 
     [Header("Power Ups")]
     private bool _canUseSuper = true;
@@ -100,8 +99,8 @@ public class Player : MonoBehaviour {
     void FixScreenBounds(){
         _screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
         Vector3 playerPosition = transform.position;
-        playerPosition.x = Mathf.Clamp(playerPosition.x, ((_screenBounds.x * -1) + boundsLimit) + spriteRenderer.bounds.extents.x , (_screenBounds.x - boundsLimit) - spriteRenderer.bounds.extents.x);
-        playerPosition.y = Mathf.Clamp(playerPosition.y, ((_screenBounds.y * -1) + boundsLimit) + spriteRenderer.bounds.extents.y, (_screenBounds.y - boundsLimit )- spriteRenderer.bounds.extents.y);
+        playerPosition.x = Mathf.Clamp(playerPosition.x, _screenBounds.x * -1 + spriteRenderer.bounds.extents.x, _screenBounds.x - spriteRenderer.bounds.extents.x);
+        playerPosition.y = Mathf.Clamp(playerPosition.y, _screenBounds.y * -1 + spriteRenderer.bounds.extents.y, _screenBounds.y - spriteRenderer.bounds.extents.y);
         _rb2d.transform.position = playerPosition;
     }
 
