@@ -23,5 +23,9 @@ public class Projetil : MonoBehaviour {
             }
             Destroy(gameObject); // Destroi o projetil após a colisão
         }
+        if (collision.CompareTag("escudo")) {
+            
+            Destroy(gameObject); // Destroi o projetil após a colisão
+        }
     }
 }
