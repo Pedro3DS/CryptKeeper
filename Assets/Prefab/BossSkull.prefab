@@ -129,8 +129,9 @@ MonoBehaviour:
   enemyType: 3
   maxHealth: 50
   scoreValue: 20
-  dropItems: []
-  dropChance: 20
+  dropItems:
+  - {fileID: 4132527478208873322, guid: 7c9e15df6e06af24cb183359a9e4ac88, type: 3}
+  dropChance: 100
 --- !u!58 &7114961138083863749
 CircleCollider2D:
   m_ObjectHideFlags: 0

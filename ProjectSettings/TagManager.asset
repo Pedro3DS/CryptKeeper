@@ -9,6 +9,8 @@ TagManager:
   - Shield
   - DropItems
   - escudo
+  - Heart
+  - Weapon2
   layers:
   - Default
   - TransparentFX

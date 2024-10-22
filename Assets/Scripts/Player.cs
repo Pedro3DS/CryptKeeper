@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     private Rigidbody2D _rb2d;
     [SerializeField] private GameObject shoot;
+    [SerializeField] private GameObject shoot2;
     [SerializeField] private float moveSpeed;
     public float shootSpeed;
     [SerializeField] private float shootCadence = 0.5f;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private Camera mainCamera;
     private Vector2 _screenBounds;
     private Vector2 lastMoveDirection; 
+    [SerializeField] private float boundsLimit;
 
     [Header("Power Ups")]
     private bool _canUseSuper = true;
@@ -65,13 +67,16 @@ public class Player : MonoBehaviour {
     }
     void Movement() {
         
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
 
-        Vector3 move = new Vector3(horizontal, vertical).normalized;
+        Vector2 move = new Vector2(horizontal  ,vertical);
+
         _rb2d.velocity = move * moveSpeed;
+    
+        // _rb2d.velocity = move * moveSpeed;
 
-        if (move != Vector3.zero) {
+        if (move != Vector2.zero) {
             lastMoveDirection = move; 
         }
 
@@ -79,7 +84,14 @@ public class Player : MonoBehaviour {
             spriteRenderer.flipX = false;
         } else if (horizontal < 0) {
             spriteRenderer.flipX = true;
+            // lantern.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
         }
+        // else if(vertical > 0){
+        //     lantern.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        // }
+        // else if(vertical < 0){
+        //     lantern.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
+        // }
 
         if (horizontal != 0 || vertical != 0) {
             gameObject.GetComponent<Animator>().SetBool("walk", true);
@@ -99,14 +111,15 @@ public class Player : MonoBehaviour {
     void FixScreenBounds(){
         _screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
         Vector3 playerPosition = transform.position;
-        playerPosition.x = Mathf.Clamp(playerPosition.x, _screenBounds.x * -1 + spriteRenderer.bounds.extents.x, _screenBounds.x - spriteRenderer.bounds.extents.x);
-        playerPosition.y = Mathf.Clamp(playerPosition.y, _screenBounds.y * -1 + spriteRenderer.bounds.extents.y, _screenBounds.y - spriteRenderer.bounds.extents.y);
+        playerPosition.x = Mathf.Clamp(playerPosition.x, ((_screenBounds.x * -1) + boundsLimit) + spriteRenderer.bounds.extents.x, (_screenBounds.x - boundsLimit) - spriteRenderer.bounds.extents.x);
+        playerPosition.y = Mathf.Clamp(playerPosition.y, ((_screenBounds.y * -1) + boundsLimit) + spriteRenderer.bounds.extents.y, (_screenBounds.y - boundsLimit) - spriteRenderer.bounds.extents.y);
         _rb2d.transform.position = playerPosition;
     }
 
     IEnumerator UseSuper(){
         if(_canUseSuper){
             _canUseSuper = false;
+            superSlider.maxValue = superDuration;
             superSlider.value = 0;
             foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("InimigoEspecial")){
                 enemy.GetComponent<Enemy>().Die();
@@ -139,6 +152,26 @@ public class Player : MonoBehaviour {
             CreateShield();
             // ChangePowerUpImage(shieldSprite);
         }
+        if (other.gameObject.CompareTag("Heart")) {
+            Destroy(other.gameObject);
+            GetLife();
+            // ChangePowerUpImage(shieldSprite);
+        }
+        if (other.gameObject.CompareTag("Weapon2")) {
+            Destroy(other.gameObject);
+            shoot = shoot2;
+            if(shootCadence >= 0.1f){
+                shootCadence -= 0.1f;
+
+            }
+            shootSpeed += 3f;
+            // ChangePowerUpImage(shieldSprite);
+        }
+    }
+
+    void GetLife(){
+        currentHealth ++;
+        UpdateHearts();
     }
 
     void TakeDamage() {
