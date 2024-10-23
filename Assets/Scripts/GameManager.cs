@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour {
         UpdateHordaText();
         countdownText.gameObject.SetActive(false); 
     }
+    
 
     void LoadPlayerName() {
         if (PlayerPrefs.HasKey("PlayerName")) {
@@ -55,6 +56,10 @@ public class GameManager : MonoBehaviour {
         playerScore += points;
         // Debug.Log("Pontuacao atual: " + playerScore);
         UpdateScoreText();
+    }
+    void Update(){
+        CheckBoss();
+        ExitGame();
     }
 
     public void PlayerDied() {
@@ -141,6 +146,11 @@ public class GameManager : MonoBehaviour {
         }
         else{
             audioSource.Stop();
+        }
+    }
+    void ExitGame(){
+        if(Input.GetKey(KeyCode.Joystick1Button8) && Input.GetKeyDown(KeyCode.Joystick1Button9)){
+            Application.Quit();
         }
     }
 

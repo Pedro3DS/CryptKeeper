@@ -118,7 +118,7 @@ public class Player : MonoBehaviour {
         }
     }
     void Shoot() {
-        if (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Joystick1Button3) ) {
+        if ((Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) || (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.Joystick1Button3)) ) {
             _nextShoot = Time.time + shootCadence;
 
             
