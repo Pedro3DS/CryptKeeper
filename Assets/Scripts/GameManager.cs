@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour {
     
     private int bossIncrementoVida = 10; 
     private int bossIncrementoPontos = 10; 
+    private bool _normalMusic = false;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip gameMusic;
@@ -140,11 +141,16 @@ public class GameManager : MonoBehaviour {
 
     void CheckBoss(){
         if(!GameObject.FindGameObjectWithTag("Boss")){
-            audioSource.clip = gameMusic;
-            audioSource.loop = true;
-            audioSource.Play();
+            if(!_normalMusic){
+                audioSource.clip = gameMusic;
+                audioSource.loop = true;
+                audioSource.Play();
+                _normalMusic = true;
+
+            }
         }
         else{
+            _normalMusic = false;
             audioSource.Stop();
         }
     }
