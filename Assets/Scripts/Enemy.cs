@@ -68,11 +68,19 @@ public class Enemy : MonoBehaviour {
         if (dropItems.Length >= 1) {
             if (GameObject.FindGameObjectsWithTag("Shield").Length <= 0 && GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().canTakeDamage != false) {
                 float randomValue = Random.Range(0f, 100f);
+                if(enemyType == EnemyType.Boss){
+                    foreach(GameObject itemDrop in dropItems){
 
-                if (randomValue <= dropChance) {
-                    int randomIndex = Random.Range(0, dropItems.Length);
-                    GameObject itemToDrop = dropItems[randomIndex];
-                    Instantiate(itemToDrop, transform.position, Quaternion.identity);
+                    Instantiate(itemDrop, transform.position, Quaternion.identity);
+                    }
+                    // GameObject itemToDrop = dropItems[randomIndex];
+                }else{
+                    if (randomValue <= dropChance) {
+                        int randomIndex = Random.Range(0, dropItems.Length);
+                        GameObject itemToDrop = dropItems[randomIndex];
+                        Instantiate(itemToDrop, transform.position, Quaternion.identity);
+                    }
+
                 }
             }
         }

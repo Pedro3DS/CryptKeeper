@@ -35,7 +35,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 100
+    spritePixelsToUnits: 36
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -88,7 +88,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     mosaicPadding: 4
     spritePadding: 0
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638652828104267920
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -123,7 +123,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: zumbizinho_Frame_0
     originalName: 
-    pivot: {x: 0.6538462, y: -0.02173913}
+    pivot: {x: 0.6538462, y: 0.49999997}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 57
       width: 26
       height: 46
-    spriteID: c712a34c6158d994c8bbc9a89a0e5397
+    spriteID: 5149bf4108506224f8b9a6cefbc59620
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -143,7 +143,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 57}
   - name: zumbizinho_Frame_1
     originalName: 
-    pivot: {x: 0.6296297, y: -0.022222225}
+    pivot: {x: 0.6296297, y: 0.51111114}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -152,7 +152,7 @@ ScriptedImporter:
       y: 4
       width: 27
       height: 45
-    spriteID: 7f286ae7348f8d44da3f2ea53740f3d8
+    spriteID: e82c01383ccc4d74bb5dde1bae7676c2
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -163,7 +163,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: zumbizinho_Frame_2
     originalName: 
-    pivot: {x: 0.6296297, y: -0.022727273}
+    pivot: {x: 0.6296297, y: 0.52272725}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -172,7 +172,7 @@ ScriptedImporter:
       y: 4
       width: 27
       height: 44
-    spriteID: 4d8507f0e37cf304b9c1ffb42e392868
+    spriteID: 4cf8d2eb56d72134e835ffe88d74a3d0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -183,7 +183,7 @@ ScriptedImporter:
     uvTransform: {x: 39, y: 4}
   - name: zumbizinho_Frame_3
     originalName: 
-    pivot: {x: 0.6296297, y: -0.022727273}
+    pivot: {x: 0.6296297, y: 0.52272725}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -192,7 +192,7 @@ ScriptedImporter:
       y: 4
       width: 27
       height: 44
-    spriteID: 47f130867e5c66542a84731add8495bf
+    spriteID: 02b1ec19b564a464dbfcdda07d69ea64
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -203,7 +203,7 @@ ScriptedImporter:
     uvTransform: {x: 74, y: 4}
   - name: zumbizinho_Frame_4
     originalName: 
-    pivot: {x: 0.6296297, y: -0.022727273}
+    pivot: {x: 0.6296297, y: 0.52272725}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 57
       width: 27
       height: 44
-    spriteID: 17fc24bb52882534abc3c891ce3af114
+    spriteID: 3bf8a460521e88e409db80cc0963f014
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -223,7 +223,7 @@ ScriptedImporter:
     uvTransform: {x: 38, y: 57}
   - name: zumbizinho_Frame_5
     originalName: 
-    pivot: {x: 0.68, y: -0.022727273}
+    pivot: {x: 0.68, y: 0.52272725}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -232,7 +232,7 @@ ScriptedImporter:
       y: 57
       width: 25
       height: 44
-    spriteID: 607f8af4301a0f24598cdb107f43ddc3
+    spriteID: 515a77c12f95a1244ae1c7ebb9016bf0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -257,7 +257,7 @@ ScriptedImporter:
         y: 1
         width: 26
         height: 46
-      spriteId: c712a34c6158d994c8bbc9a89a0e5397
+      spriteId: 5149bf4108506224f8b9a6cefbc59620
     - name: zumbizinho_Frame_1
       frameIndex: 1
       cellRect:
@@ -265,7 +265,7 @@ ScriptedImporter:
         y: 1
         width: 27
         height: 45
-      spriteId: 7f286ae7348f8d44da3f2ea53740f3d8
+      spriteId: e82c01383ccc4d74bb5dde1bae7676c2
     - name: zumbizinho_Frame_2
       frameIndex: 2
       cellRect:
@@ -273,7 +273,7 @@ ScriptedImporter:
         y: 1
         width: 27
         height: 44
-      spriteId: 4d8507f0e37cf304b9c1ffb42e392868
+      spriteId: 4cf8d2eb56d72134e835ffe88d74a3d0
     - name: zumbizinho_Frame_3
       frameIndex: 3
       cellRect:
@@ -281,7 +281,7 @@ ScriptedImporter:
         y: 1
         width: 27
         height: 44
-      spriteId: 47f130867e5c66542a84731add8495bf
+      spriteId: 02b1ec19b564a464dbfcdda07d69ea64
     - name: zumbizinho_Frame_4
       frameIndex: 4
       cellRect:
@@ -289,7 +289,7 @@ ScriptedImporter:
         y: 1
         width: 27
         height: 44
-      spriteId: 17fc24bb52882534abc3c891ce3af114
+      spriteId: 3bf8a460521e88e409db80cc0963f014
     - name: zumbizinho_Frame_5
       frameIndex: 5
       cellRect:
@@ -297,10 +297,70 @@ ScriptedImporter:
         y: 1
         width: 25
         height: 44
-      spriteId: 607f8af4301a0f24598cdb107f43ddc3
+      spriteId: 515a77c12f95a1244ae1c7ebb9016bf0
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: iPhone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 

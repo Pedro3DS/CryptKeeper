@@ -77,13 +77,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -3949305377285216194, guid: 5781b20e6d1ff6b4784872bf05ef577b, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 8608683117976512215, guid: c40131345614bbc4caf694ae721742a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7222222, y: 1.2777778}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -152,8 +152,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.13502789, y: 0.0071544647}
-  m_Size: {x: 0.5683898, y: 1.2915637}
+  m_Offset: {x: 0, y: 0.0071544647}
+  m_Size: {x: 0.4671812, y: 1.2915637}
   m_Direction: 0
 --- !u!50 &-887433920302323674
 Rigidbody2D:
@@ -192,7 +192,7 @@ Animator:
   m_GameObject: {fileID: 2110220847936240439}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2ccf05becc981e749a7975145e2904ea, type: 2}
+  m_Controller: {fileID: -5215299067201352599, guid: c40131345614bbc4caf694ae721742a2, type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

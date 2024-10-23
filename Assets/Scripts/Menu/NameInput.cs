@@ -6,6 +6,9 @@ public class NameInput : MonoBehaviour {
     public TextMeshProUGUI rankingText;   
     private char[] letters = new char[5]; 
     private int currentIndex = 0;
+    bool verticalAxisInUse = false;
+    bool horizontalAxisInUse = false;
+
 
     private void Start() {
         LoadPlayerName(); 
@@ -15,17 +18,27 @@ public class NameInput : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") >0) {
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") >0) && !verticalAxisInUse) {
             ChangeLetter(1);
-        } else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") <0) {
+            verticalAxisInUse = true;
+        } else if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") <0) && !verticalAxisInUse) {
             ChangeLetter(-1);
+            verticalAxisInUse = true;
+        }
+        if (Input.GetAxisRaw("Vertical") == 0) {
+            verticalAxisInUse = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxisRaw("Horizontal") >0) {
+        if ((Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxisRaw("Horizontal") >0) && !horizontalAxisInUse) {
             MoveToNextLetter();
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxisRaw("Horizontal") >0) {
+            horizontalAxisInUse = true;
+        } else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxisRaw("Horizontal") <0) && !horizontalAxisInUse) {
             MoveToPreviousLetter();
+            horizontalAxisInUse = true;
         }
+        if (Input.GetAxisRaw("Horizontal") == 0) {
+        horizontalAxisInUse = false;
+    }
 
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button9)) {
             SavePlayerName(); 

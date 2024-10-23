@@ -22,9 +22,9 @@ public class InimigoTerrestre : MonoBehaviour {
             gameObject.GetComponent<Rigidbody2D>().velocity = direcao * velocidade * Time.deltaTime;
 
            
-            if (direcao.x > 0 && spriteRenderer.flipX == true) {
+            if (direcao.x > 0 ) {
                 spriteRenderer.flipX = true;   
-            } else if (direcao.x < 0 && spriteRenderer.flipX == false) {
+            } else if (direcao.x < 0) {
                 spriteRenderer.flipX = false;  
             }
         }

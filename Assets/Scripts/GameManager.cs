@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour {
     private int bossIncrementoVida = 10; 
     private int bossIncrementoPontos = 10; 
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip gameMusic;
+
     void Start() {
         LoadPlayerName();
         StartCoroutine(GerenciarHordas());
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour {
 
     public void AddScore(int points) {
         playerScore += points;
-        Debug.Log("Pontuação atual: " + playerScore);
+        // Debug.Log("Pontuacao atual: " + playerScore);
         UpdateScoreText();
     }
 
@@ -61,13 +64,13 @@ public class GameManager : MonoBehaviour {
 
     public void SaveScore() {
         string playerName = PlayerPrefs.GetString("PlayerName", "AAAAA");
-        Debug.Log("Salvando pontuação: " + playerName + " - " + playerScore);
+        // Debug.Log("Salvando pontuaï¿½ï¿½o: " + playerName + " - " + playerScore);
         HighScoreManager.SaveScore(playerName, playerScore);
     }
 
     private void UpdateScoreText() {
         if (scoreText != null) {
-            scoreText.text = "Pontuação: " + playerScore;
+            scoreText.text = "PontuaÃ§Ã£o: " + playerScore;
         }
     }
 
@@ -127,6 +130,17 @@ public class GameManager : MonoBehaviour {
             bossSpawnado = false; 
 
             UpdateHordaText();
+        }
+    }
+
+    void CheckBoss(){
+        if(!GameObject.FindGameObjectWithTag("Boss")){
+            audioSource.clip = gameMusic;
+            audioSource.loop = true;
+            audioSource.Play();
+        }
+        else{
+            audioSource.Stop();
         }
     }
 
@@ -207,7 +221,7 @@ public class GameManager : MonoBehaviour {
 
 
     IEnumerator ContagemRegressivaParaReinicio() {
-        Debug.Log("Iniciando contagem regressiva para reinício.");
+        Debug.Log("Iniciando contagem regressiva para reinï¿½cio.");
         countdownText.gameObject.SetActive(true); 
         for (int i = 3; i > 0; i--) {
             countdownText.text = i.ToString(); 

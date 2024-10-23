@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -194,12 +194,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoot: {fileID: 2940331612354814200, guid: 94642cdbfddaa6143bd08f753abdc3c6, type: 3}
+  shoot2: {fileID: 0}
   moveSpeed: 450
   shootSpeed: 20
   shootCadence: 0.1
-  shootSamples: 0
+  canTakeDamage: 1
   maxHealth: 3
-  heartSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  activeLife: {fileID: 0}
+  disableLife: {fileID: 0}
+  heatsField: []
+  mainCamera: {fileID: 0}
+  boundsLimit: 0
+  superDuration: 0
+  superSlider: {fileID: 0}
+  powerUpField: {fileID: 0}
+  shield: {fileID: 0}
+  shieldSprite: {fileID: 0}

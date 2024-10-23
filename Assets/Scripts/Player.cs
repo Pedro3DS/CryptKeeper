@@ -38,6 +38,14 @@ public class Player : MonoBehaviour {
     [SerializeField] private Image powerUpField;
     [SerializeField] private GameObject shield;
     [SerializeField] private Sprite shieldSprite;
+    [Header("Sound Effects")]
+    private AudioSource _audioSource;
+    [SerializeField] private AudioClip lifeEffect;
+    [SerializeField] private AudioClip defEffect;
+    [SerializeField] private AudioClip damageEffect;
+    [SerializeField] private AudioClip weaponEffect;
+
+
 
     void Start() {
         if (mainCamera == null)
@@ -47,6 +55,7 @@ public class Player : MonoBehaviour {
         _rb2d = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         playerCollider = gameObject.GetComponent<Collider2D>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
         currentHealth = maxHealth;
         UpdateHearts(); 
         gameManager = FindObjectOfType<GameManager>();
@@ -157,16 +166,22 @@ public class Player : MonoBehaviour {
     
     void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("Shield")) {
+            _audioSource.clip = defEffect;
+            _audioSource.Play();
             Destroy(other.gameObject);
             CreateShield();
             // ChangePowerUpImage(shieldSprite);
         }
         if (other.gameObject.CompareTag("Heart")) {
+            _audioSource.clip = lifeEffect;
+            _audioSource.Play();
             Destroy(other.gameObject);
             GetLife();
             // ChangePowerUpImage(shieldSprite);
         }
         if (other.gameObject.CompareTag("Weapon2")) {
+            _audioSource.clip = weaponEffect;
+            _audioSource.Play();
             Destroy(other.gameObject);
             shoot = shoot2;
             if(shootCadence >= 0.1f){
@@ -185,6 +200,8 @@ public class Player : MonoBehaviour {
 
     void TakeDamage() {
         if(canTakeDamage){
+            _audioSource.clip = damageEffect;
+            _audioSource.Play();
             currentHealth--;
             UpdateHearts();
 
