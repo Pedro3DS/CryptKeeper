@@ -15,19 +15,19 @@ public class NameInput : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") >0) {
             ChangeLetter(1);
-        } else if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        } else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") <0) {
             ChangeLetter(-1);
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetAxisRaw("Horizontal") >0) {
             MoveToNextLetter();
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetAxisRaw("Horizontal") >0) {
             MoveToPreviousLetter();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return)) {
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Joystick1Button9)) {
             SavePlayerName(); 
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game"); 
         }

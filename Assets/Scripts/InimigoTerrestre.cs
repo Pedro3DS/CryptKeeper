@@ -23,9 +23,9 @@ public class InimigoTerrestre : MonoBehaviour {
 
            
             if (direcao.x > 0 && spriteRenderer.flipX == true) {
-                spriteRenderer.flipX = false;  
-            } else if (direcao.x < 0 && spriteRenderer.flipX == false) {
                 spriteRenderer.flipX = true;   
+            } else if (direcao.x < 0 && spriteRenderer.flipX == false) {
+                spriteRenderer.flipX = false;  
             }
         }
     }

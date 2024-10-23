@@ -16,8 +16,10 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private int maxHealth = 3; 
     private int currentHealth;
-    public Image heartSprite;
-    [SerializeField] private GameObject heatsField; 
+    
+    [SerializeField] private Sprite activeLife; 
+    [SerializeField] private Sprite disableLife; 
+    [SerializeField] private Image[] heatsField; 
     private bool isInvulnerable = false;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider;
@@ -51,18 +53,20 @@ public class Player : MonoBehaviour {
         lastMoveDirection = Vector2.right; 
     }
     void UpdateHearts() {
-        // for (var i = heatsField.transform.childCount - 1; i >= 0; i--)
-        // {
-        //     Destroy(heatsField.GetChild(i));
-        // }
-        if(currentHealth <= 10){
+        if(currentHealth <= 5){
 
-            for (int i = 0; i <= currentHealth; i++) {
-                Instantiate(heartSprite, heatsField.transform);
+            for (int i = 0; i <= heatsField.Length-1; i++) {
+
+                heatsField[i].sprite = disableLife;
+                // heartSprites[i].SetActive(i < currentHealth);
+            }
+            for (int i = 0; i <= currentHealth -1; i++) {
+                heatsField[i].sprite = activeLife;
+                // Debug.Log(i);
                 // heartSprites[i].SetActive(i < currentHealth);
             }
         }else{
-            currentHealth = 10;
+            currentHealth = 5;
         }
     }
 
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour {
         FixScreenBounds();
         Movement();
         Shoot();
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button0)){
             StartCoroutine(UseSuper());
         }
     }
@@ -92,17 +96,11 @@ public class Player : MonoBehaviour {
         }
 
         if (horizontal > 0) {
-            spriteRenderer.flipX = false;
-        } else if (horizontal < 0) {
             spriteRenderer.flipX = true;
-            // lantern.transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+        } else if (horizontal < 0) {
+            spriteRenderer.flipX = false;
         }
-        // else if(vertical > 0){
-        //     lantern.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        // }
-        // else if(vertical < 0){
-        //     lantern.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
-        // }
+
 
         if (horizontal != 0 || vertical != 0) {
             gameObject.GetComponent<Animator>().SetBool("walk", true);
@@ -111,7 +109,7 @@ public class Player : MonoBehaviour {
         }
     }
     void Shoot() {
-        if (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) {
+        if (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Joystick1Button3) ) {
             _nextShoot = Time.time + shootCadence;
 
             

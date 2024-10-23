@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5830045, y: 0.50142866, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -117,6 +117,8 @@ MonoBehaviour:
   enemyType: 2
   maxHealth: 2
   scoreValue: 2
+  dropItems: []
+  dropChance: 20
 --- !u!95 &6528866307593717938
 Animator:
   serializedVersion: 5

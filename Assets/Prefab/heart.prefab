@@ -48,7 +48,7 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.124
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.78736246, b: 0, a: 1}
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
@@ -66,8 +66,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.054250002, y: -0.03129995, z: 0}
-    m_Extent: {x: 3.10625, y: 3.1764002, z: 0}
+    m_Center: {x: -0.00454998, y: 0.33929992, z: 0}
+    m_Extent: {x: 2.36605, y: 2.4087, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -78,17 +78,13 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 2.1
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.20452155, y: -1.090957, z: 0}
-  - {x: 0.0787856, y: -1.1098176, z: 0}
-  - {x: 0.4424428, y: -0.5878812, z: 0}
-  - {x: 0.9500881, y: -0.25458387, z: 0}
-  - {x: 0.9514827, y: 0.75960225, z: 0}
-  - {x: 0.4690046, y: 1.0372933, z: 0}
-  - {x: -0.060375374, y: 0.74241924, z: 0}
-  - {x: -0.5781466, y: 1.0465808, z: 0}
-  - {x: -1.0607537, y: 0.76003873, z: 0}
-  - {x: -1.0596976, y: -0.25127232, z: 0}
-  - {x: -0.54203707, y: -0.5928617, z: 0}
+  - {x: -0.2283454, y: 0.031697642, z: 0}
+  - {x: 0.22631788, y: 0.030361623, z: 0}
+  - {x: 0.26419285, y: 0.29982102, z: 0}
+  - {x: 0.2241174, y: 0.64495707, z: 0}
+  - {x: -0.014614847, y: 0.64755046, z: 0}
+  - {x: -0.22005719, y: 0.63937294, z: 0}
+  - {x: -0.27062464, y: 0.33928716, z: 0}
 --- !u!1 &7471980313234327220
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +95,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3372086830757038593}
   - component: {fileID: 3037608848072379441}
-  - component: {fileID: 2076820294859397508}
+  - component: {fileID: 3638839584748756844}
+  - component: {fileID: 266989902110921324}
   m_Layer: 0
   m_Name: heart
   m_TagString: Heart
@@ -116,8 +113,8 @@ Transform:
   m_GameObject: {fileID: 7471980313234327220}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1545, y: -0.0276, z: 0}
-  m_LocalScale: {x: 0.32430252, y: 0.32430252, z: 0.32430252}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 321490838161211149}
@@ -164,7 +161,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9debce3fd993dd94cb60e51cd5a35a0a, type: 3}
+  m_Sprite: {fileID: 1303082654085874192, guid: b949089d635c40d49ab314f64e09640f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -175,8 +172,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2076820294859397508
-PolygonCollider2D:
+--- !u!95 &3638839584748756844
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7471980313234327220}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4c5cf581e46e804e96a60a48111f33e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &266989902110921324
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -204,42 +222,19 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.33333334}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.97, y: 2.83}
+    pivot: {x: 0.5, y: -0.045454547}
+    oldSize: {x: 0.5, y: 0.6111111}
     newSize: {x: 2.97, y: 2.83}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 1.095, y: 0.044999998}
-      - {x: 1.095, y: 0.60499996}
-      - {x: 0.645, y: 1.055}
-      - {x: 0.205, y: 1.055}
-      - {x: 0.055, y: 0.895}
-      - {x: 0.074999996, y: 0.765}
-      - {x: -0.205, y: 0.905}
-      - {x: -0.345, y: 1.055}
-      - {x: -0.79499996, y: 1.055}
-      - {x: -0.935, y: 0.92499995}
-      - {x: -1.2049999, y: 0.60499996}
-      - {x: -1.2049999, y: 0.044999998}
-      - {x: -1.185, y: 0.024999999}
-      - {x: -1.0649999, y: 0.024999999}
-      - {x: -1.0649999, y: -0.255}
-      - {x: -0.765, y: -0.545}
-      - {x: -0.49499997, y: -0.805}
-      - {x: -0.465, y: -0.85499996}
-      - {x: -0.255, y: -1.115}
-      - {x: 0.125, y: -1.115}
-      - {x: 0.405, y: -0.825}
-      - {x: 0.825, y: -0.42499998}
-      - {x: 0.955, y: -0.235}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.6111111}
+  m_EdgeRadius: 0
