@@ -66,7 +66,7 @@ public class Player : MonoBehaviour {
         lastMoveDirection = Vector2.right; 
     }
     void UpdateHearts() {
-        if(currentHealth <= 5){
+        if(currentHealth <= 3){
 
             for (int i = 0; i <= heatsField.Length-1; i++) {
 
@@ -79,7 +79,7 @@ public class Player : MonoBehaviour {
                 // heartSprites[i].SetActive(i < currentHealth);
             }
         }else{
-            currentHealth = 5;
+            currentHealth = 3;
         }
     }
 
