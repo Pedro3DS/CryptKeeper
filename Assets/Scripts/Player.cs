@@ -252,6 +252,7 @@ public class Player : MonoBehaviour {
         gameManager.SaveScore(); 
         canTakeDamage = false;
         _rb2d.bodyType = RigidbodyType2D.Static;
+        gameObject.GetComponent<CapsuleCollider2D>().isTrigger = true;
         gameOverCanvas.SetActive(true);
         gameOverCanvas.GetComponent<GameOver>().gameOver = true;
         // SceneManager.LoadScene("Menu"); 

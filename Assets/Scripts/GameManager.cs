@@ -173,6 +173,10 @@ public class GameManager : MonoBehaviour {
 
         
         inimigo.AjustarVidaInicial(); 
+        if(hordaAtual >= 10 && hordaAtual <= 30){
+            inimigo.GetComponent<InimigoTerrestre>().velocidade += 8f;
+            inimigo.GetComponent<Enemy>().maxHealth ++;
+        }
     }
 
     void SpawnInimigoVoador() {
