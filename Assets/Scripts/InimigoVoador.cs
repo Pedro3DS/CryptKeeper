@@ -9,9 +9,11 @@ public class InimigoVoador : MonoBehaviour {
 
     private Transform player;
     private float tempoUltimoTiro = 0f;
+    private Rigidbody2D _rb2d;
 
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        _rb2d = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void Update() {
@@ -20,7 +22,8 @@ public class InimigoVoador : MonoBehaviour {
 
             if (distanciaDoPlayer > distanciaAtaque) {
                 Vector3 direcao = (player.position - transform.position).normalized;
-                transform.position += direcao * velocidade * Time.deltaTime;
+                _rb2d.velocity = direcao * velocidade * Time.deltaTime;
+                // transform.position += direcao * velocidade * Time.deltaTime;
             } else {
                 AtirarNoPlayer();
             }

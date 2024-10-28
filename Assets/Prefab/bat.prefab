@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4a55658291bbd4fbfe4473a8849a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 2
+  velocidade: 150
   distanciaAtaque: 3
   projetilPrefab: {fileID: 4259884682701938600, guid: 6ee2ba8fe0132ac4db2ca4703a7d0cf0, type: 3}
   intervaloTiro: 4

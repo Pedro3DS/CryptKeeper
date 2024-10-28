@@ -31,6 +31,10 @@ public class Player : MonoBehaviour {
     private Vector2 lastMoveDirection; 
     [SerializeField] private float boundsLimit;
 
+    [SerializeField] private GameObject gameOverCanvas;
+    private bool _isDied = false;
+    private bool _canShoot = true;
+
     [Header("Power Ups")]
     private bool _canUseSuper = true;
     [SerializeField] private float superDuration;
@@ -118,12 +122,15 @@ public class Player : MonoBehaviour {
         }
     }
     void Shoot() {
-        if ((Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) || (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.Joystick1Button3)) ) {
-            _nextShoot = Time.time + shootCadence;
+        if(_canShoot){
 
-            
-            GameObject newShoot = Instantiate(shoot, transform.position, Quaternion.identity);
-            newShoot.GetComponent<Rigidbody2D>().velocity = lastMoveDirection * shootSpeed;
+            if ((Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.P)) || (Time.time >= _nextShoot && Input.GetKeyDown(KeyCode.Joystick1Button3)) ) {
+                _nextShoot = Time.time + shootCadence;
+
+                
+                GameObject newShoot = Instantiate(shoot, transform.position, Quaternion.identity);
+                newShoot.GetComponent<Rigidbody2D>().velocity = lastMoveDirection * shootSpeed;
+            }
         }
     }
     void FixScreenBounds(){
@@ -170,26 +177,31 @@ public class Player : MonoBehaviour {
             _audioSource.Play();
             Destroy(other.gameObject);
             CreateShield();
-            // ChangePowerUpImage(shieldSprite);
+
         }
         if (other.gameObject.CompareTag("Heart")) {
             _audioSource.clip = lifeEffect;
             _audioSource.Play();
             Destroy(other.gameObject);
             GetLife();
-            // ChangePowerUpImage(shieldSprite);
+
+        }
+        if (other.gameObject.CompareTag("Timer")) {
+            _audioSource.clip = lifeEffect;
+            _audioSource.Play();
+            Destroy(other.gameObject);
+            if(shootCadence >= 0.1f){
+                shootCadence -= 0.1f;
+            }
+
         }
         if (other.gameObject.CompareTag("Weapon2")) {
             _audioSource.clip = weaponEffect;
             _audioSource.Play();
             Destroy(other.gameObject);
             shoot = shoot2;
-            if(shootCadence >= 0.1f){
-                shootCadence -= 0.1f;
+            shootSpeed += 4f;
 
-            }
-            shootSpeed += 3f;
-            // ChangePowerUpImage(shieldSprite);
         }
     }
 
@@ -206,7 +218,10 @@ public class Player : MonoBehaviour {
             UpdateHearts();
 
             if (currentHealth <= 0) {
-                Die(); 
+                if(!_isDied){
+                    Die(); 
+
+                }
             } else {
                 StartCoroutine(BecomeInvulnerable()); 
             }
@@ -231,8 +246,15 @@ public class Player : MonoBehaviour {
         isInvulnerable = false;
     }
     void Die() {
+        _isDied = true;
+        _canShoot = false;
+        _canUseSuper = false;
         gameManager.SaveScore(); 
-        SceneManager.LoadScene("Menu"); 
+        canTakeDamage = false;
+        _rb2d.bodyType = RigidbodyType2D.Static;
+        gameOverCanvas.SetActive(true);
+        gameOverCanvas.GetComponent<GameOver>().gameOver = true;
+        // SceneManager.LoadScene("Menu"); 
     }
     public void TakeDamage(int amount) {
         if (!isInvulnerable) {

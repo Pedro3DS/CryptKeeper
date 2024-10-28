@@ -29,10 +29,12 @@ public class GameManager : MonoBehaviour {
     private int incrementoPontos = 1;
     private bool bossSpawnado = false;
 
+    [SerializeField] private GameObject gameOverCanvas;
     
     private int bossIncrementoVida = 10; 
     private int bossIncrementoPontos = 10; 
     private bool _normalMusic = false;
+
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip gameMusic;
@@ -65,7 +67,9 @@ public class GameManager : MonoBehaviour {
 
     public void PlayerDied() {
         SaveScore();
-        SceneManager.LoadScene("Menu");
+        gameOverCanvas.SetActive(true);
+        gameOverCanvas.GetComponent<GameOver>().gameOver = true;
+        // SceneManager.LoadScene("Menu");
     }
 
     public void SaveScore() {

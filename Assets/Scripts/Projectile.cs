@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour {
@@ -7,11 +8,17 @@ public class Projectile : MonoBehaviour {
         Enemy enemy = other.GetComponent<Enemy>();
         if (enemy != null) {
             enemy.TakeDamage(damage); 
-            Destroy(gameObject);  
+            if(!gameObject.CompareTag("Sickle")){
+                Destroy(gameObject);  
+
+            }
         }
     }
 
     private void Start() {
         Destroy(gameObject, 3.0f);  
+    }
+    void OnBecameInvisible(){
+        Destroy(gameObject);
     }
 }

@@ -11,6 +11,8 @@ TagManager:
   - escudo
   - Heart
   - Weapon2
+  - Timer
+  - Sickle
   layers:
   - Default
   - TransparentFX

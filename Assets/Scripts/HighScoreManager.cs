@@ -6,11 +6,11 @@ public class HighScoreManager : MonoBehaviour {
         public static void SaveScore(string playerName, int score) {
             List<HighScore> highScores = LoadHighScores();
 
-            // Verifica se o jogador já existe na lista de pontuações
+            // Verifica se o jogador jï¿½ existe na lista de pontuaï¿½ï¿½es
             bool playerExists = false;
             for (int i = 0; i < highScores.Count; i++) {
                 if (highScores[i].name == playerName) {
-                    // Se o jogador já existe e a nova pontuação for maior, atualiza a pontuação
+                    // Se o jogador jï¿½ existe e a nova pontuaï¿½ï¿½o for maior, atualiza a pontuaï¿½ï¿½o
                     if (score > highScores[i].score) {
                         highScores[i].score = score;
                     }
@@ -19,17 +19,17 @@ public class HighScoreManager : MonoBehaviour {
                 }
             }
 
-            // Se o jogador não existir, adiciona a nova pontuação
+            // Se o jogador nï¿½o existir, adiciona a nova pontuaï¿½ï¿½o
             if (!playerExists) {
                 highScores.Add(new HighScore(playerName, score));
             }
 
-            // Ordena as pontuações em ordem decrescente
+            // Ordena as pontuaï¿½ï¿½es em ordem decrescente
             highScores.Sort((x, y) => y.score.CompareTo(x.score));
 
-            // Mantém apenas as 3 melhores pontuações
-            if (highScores.Count > 3) {
-                highScores.RemoveAt(3); // Remove a menor pontuação
+            // Mantï¿½m apenas as 3 melhores pontuaï¿½ï¿½es
+            if (highScores.Count > 5) {
+                highScores.RemoveAt(5); // Remove a menor pontuaï¿½ï¿½o
             }
 
             // Salva os dados no PlayerPrefs
@@ -45,8 +45,8 @@ public class HighScoreManager : MonoBehaviour {
         public static List<HighScore> LoadHighScores() {
             List<HighScore> highScores = new List<HighScore>();
 
-            // Checa se os dados existem e carrega as pontuações
-            for (int i = 0; i < 3; i++) {
+            // Checa se os dados existem e carrega as pontuaï¿½ï¿½es
+            for (int i = 0; i < 5; i++) {
                 string name = PlayerPrefs.GetString("TopPlayer" + i, "");
                 int score = PlayerPrefs.GetInt("TopScore" + i, 0);
                 if (!string.IsNullOrEmpty(name)) {
@@ -54,11 +54,13 @@ public class HighScoreManager : MonoBehaviour {
                 }
             }
 
-            // Se não houver pontuações, inicializa com valores padrão (opcional)
+            // Se nï¿½o houver pontuaï¿½ï¿½es, inicializa com valores padrï¿½o (opcional)
             if (highScores.Count == 0) {
                 highScores.Add(new HighScore("Player1", 0));
                 highScores.Add(new HighScore("Player2", 0));
                 highScores.Add(new HighScore("Player3", 0));
+                highScores.Add(new HighScore("Player4", 0));
+                highScores.Add(new HighScore("Player5", 0));
                 SaveInitialScores(highScores);
             }
 
