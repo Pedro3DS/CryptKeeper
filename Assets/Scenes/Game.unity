@@ -2187,7 +2187,7 @@ Animator:
   m_GameObject: {fileID: 1271255300}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: -1262210141266838423, guid: ce0d8a1df425bfb4ab66c303fe7e15f6, type: 3}
+  m_Controller: {fileID: 9100000, guid: c794639ef30314141a75b81c02b515ad, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2239,12 +2239,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 700088053758082451, guid: ce0d8a1df425bfb4ab66c303fe7e15f6, type: 3}
+  m_Sprite: {fileID: 1715263081663662758, guid: c11f8e090ee81d24d88a3b464e6a63f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.35, y: 0.45}
+  m_Size: {x: 0.39, y: 0.45}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3414,7 +3414,7 @@ MonoBehaviour:
   scoreText: {fileID: 578793722}
   hordaText: {fileID: 742050642}
   countdownText: {fileID: 687211777}
-  hordaAtual: 1
+  hordaAtual: 11
   inimigosPorHorda: 3
   spawnInterval: 1.5
   screenWidth: 20

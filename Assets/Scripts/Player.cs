@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
     private Rigidbody2D _rb2d;
     [SerializeField] private GameObject shoot;
     [SerializeField] private GameObject shoot2;
+    private bool _usingWapon2 = false;
     [SerializeField] private float moveSpeed;
     public float shootSpeed;
     [SerializeField] private float shootCadence = 0.5f;
@@ -116,9 +117,21 @@ public class Player : MonoBehaviour {
 
 
         if (horizontal != 0 || vertical != 0) {
-            gameObject.GetComponent<Animator>().SetBool("walk", true);
+            if(_usingWapon2){
+                gameObject.GetComponent<Animator>().SetBool("walkF", true);
+
+            }else{
+
+                gameObject.GetComponent<Animator>().SetBool("walk", true);
+            }
         } else {
-            gameObject.GetComponent<Animator>().SetBool("walk", false);
+            if(_usingWapon2){
+                gameObject.GetComponent<Animator>().SetBool("walkF", false);
+
+            }else{
+
+                gameObject.GetComponent<Animator>().SetBool("walk", false);
+            }
         }
     }
     void Shoot() {
@@ -198,6 +211,9 @@ public class Player : MonoBehaviour {
         if (other.gameObject.CompareTag("Weapon2")) {
             _audioSource.clip = weaponEffect;
             _audioSource.Play();
+            gameObject.GetComponent<Animator>().SetBool("walk", false);
+            gameObject.GetComponent<Animator>().SetBool("idleF", true);
+            _usingWapon2 = true;
             Destroy(other.gameObject);
             shoot = shoot2;
             shootSpeed += 4f;

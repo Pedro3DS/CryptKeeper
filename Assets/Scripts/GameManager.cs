@@ -170,20 +170,28 @@ public class GameManager : MonoBehaviour {
         float randomY = Random.Range(-screenHeight / 2, screenHeight / 2);
         Vector3 spawnPosition = new Vector3(ladoSpawn, randomY, 0);
         Enemy inimigo = Instantiate(inimigoTerrestrePrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
+        if (hordaAtual >=10) {
+            inimigo.GetComponent<InimigoTerrestre>().velocidade += 40f;
+            inimigo.GetComponent<Enemy>().maxHealth ++;
+             inimigo.GetComponent<Enemy>().scoreValue++;
+             inimigo.GetComponent<Enemy>().scoreValue = Random.Range(inimigo.GetComponent<Enemy>().scoreValue, inimigo.GetComponent<Enemy>().scoreValue*2);
+               
+                
+        }
 
         
-        inimigo.AjustarVidaInicial(); 
-        if(hordaAtual >= 10 && hordaAtual <= 30){
-            inimigo.GetComponent<InimigoTerrestre>().velocidade += 8f;
-            inimigo.GetComponent<Enemy>().maxHealth ++;
-        }
+        // inimigo.AjustarVidaInicial(); 
     }
 
     void SpawnInimigoVoador() {
         float randomX = Random.Range(-screenWidth / 2, screenWidth / 2);
         Vector3 spawnPosition = new Vector3(randomX, screenHeight / 2 + 2, 0);
         Enemy inimigo = Instantiate(inimigoVoadorPrefab, spawnPosition, Quaternion.identity).GetComponent<Enemy>();
-
+        if (hordaAtual >=10) {
+            inimigo.GetComponent<Enemy>().scoreValue = Random.Range(inimigo.GetComponent<Enemy>().scoreValue, inimigo.GetComponent<Enemy>().scoreValue*2);
+               
+                
+        }
        
         inimigo.AjustarVidaInicial(); 
     }
