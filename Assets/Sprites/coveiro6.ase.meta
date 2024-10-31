@@ -1,0 +1,811 @@
+fileFormatVersion: 2
+guid: c3c171d0f95f23947924f3a851b1ab36
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: coveiro6_Frame_0
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 326
+      width: 35
+      height: 46
+    spriteID: d486ccad1c712654a8824dad0ebacb3e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 326}
+  - name: coveiro6_Frame_1
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.021276597}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 271
+      width: 35
+      height: 47
+    spriteID: 4dcad31e325b67349a9ed7c3349ebad5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 271}
+  - name: coveiro6_Frame_2
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 380
+      width: 35
+      height: 46
+    spriteID: 5bd7bf615b2a00e40b41679a6b935cfc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 380}
+  - name: coveiro6_Frame_3
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 434
+      width: 35
+      height: 46
+    spriteID: b435e922d8ae33349b2ee4747367abda
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 434}
+  - name: coveiro6_Frame_4
+    originalName: 
+    pivot: {x: 0.42424247, y: -0.022222225}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 272
+      width: 33
+      height: 45
+    spriteID: 25dc37d7673df5240b002366c20361d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 272}
+  - name: coveiro6_Frame_5
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 4
+      width: 35
+      height: 46
+    spriteID: 7b79fcac810540c40a45133b855fdc47
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 4}
+  - name: coveiro6_Frame_6
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 58
+      width: 35
+      height: 46
+    spriteID: ae1ba136943f33c46a2c547429a26f40
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 58}
+  - name: coveiro6_Frame_7
+    originalName: 
+    pivot: {x: 0.45945945, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 163
+      width: 37
+      height: 46
+    spriteID: 71be37326ca96e24fa14513721e31082
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 163}
+  - name: coveiro6_Frame_8
+    originalName: 
+    pivot: {x: 0.47222227, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 217
+      width: 36
+      height: 46
+    spriteID: ca91f92c058df6042897d127083114d6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 217}
+  - name: coveiro6_Frame_9
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 112
+      width: 35
+      height: 46
+    spriteID: e98de1830beae59419d86a27268374b8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 112}
+  - name: coveiro6_Frame_10
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.022222225}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 166
+      width: 35
+      height: 45
+    spriteID: 26a22e8129cdc4348809e60496d38f0a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 166}
+  - name: coveiro6_Frame_11
+    originalName: 
+    pivot: {x: 0.45714283, y: -0.022222225}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 98
+      y: 219
+      width: 35
+      height: 45
+    spriteID: b285cfe897bd1bc4eae86616b7dd63db
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 98, y: 219}
+  - name: coveiro6_Frame_12
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 59
+      width: 39
+      height: 46
+    spriteID: dc6c23ebdd510864b8c527278ab3d5af
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 59}
+  - name: coveiro6_Frame_13
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.021276597}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 39
+      height: 47
+    spriteID: 63de9753dd57b0b468a67c8e2a7a16f2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: coveiro6_Frame_14
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 113
+      width: 39
+      height: 46
+    spriteID: 9c59e4fe48aa6d645bd429a06c2c215c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 113}
+  - name: coveiro6_Frame_15
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 167
+      width: 39
+      height: 46
+    spriteID: 2cf4dc83677e3494d86fa09b7a1bff59
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 167}
+  - name: coveiro6_Frame_16
+    originalName: 
+    pivot: {x: 0.4736842, y: -0.022222225}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 110
+      width: 38
+      height: 45
+    spriteID: ad6ae1c2fecc78e4490a72446841d48d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 110}
+  - name: coveiro6_Frame_17
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 221
+      width: 39
+      height: 46
+    spriteID: 1109cc3c87a1d0448a93d82c67512b66
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 221}
+  - name: coveiro6_Frame_18
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 275
+      width: 39
+      height: 46
+    spriteID: 5a7804dbcac7b4d41bafd2bc2ad34676
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 275}
+  - name: coveiro6_Frame_19
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 329
+      width: 39
+      height: 46
+    spriteID: 639a2857df066944c98e9e01ca53012a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 329}
+  - name: coveiro6_Frame_20
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 383
+      width: 39
+      height: 46
+    spriteID: 1cf346e3dd16a974485ad47ab300a834
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 383}
+  - name: coveiro6_Frame_21
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.02173913}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 437
+      width: 39
+      height: 46
+    spriteID: 3d20c81e5e1c98945971bf81e8d6cfad
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 437}
+  - name: coveiro6_Frame_22
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.022222225}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 4
+      width: 39
+      height: 45
+    spriteID: e62c8c1bea8d52f4d966a7e8601546da
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 4}
+  - name: coveiro6_Frame_23
+    originalName: 
+    pivot: {x: 0.51282054, y: -0.022222225}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 57
+      width: 39
+      height: 45
+    spriteID: 8e16a641e71a6594e95f3741aadcaaf7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 57}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 816099241
+    name: coveiro6
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: coveiro6_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 46
+      spriteId: d486ccad1c712654a8824dad0ebacb3e
+    - name: coveiro6_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 47
+      spriteId: 4dcad31e325b67349a9ed7c3349ebad5
+    - name: coveiro6_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 46
+      spriteId: 5bd7bf615b2a00e40b41679a6b935cfc
+    - name: coveiro6_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 46
+      spriteId: b435e922d8ae33349b2ee4747367abda
+    - name: coveiro6_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 10
+        y: 1
+        width: 33
+        height: 45
+      spriteId: 25dc37d7673df5240b002366c20361d5
+    - name: coveiro6_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 46
+      spriteId: 7b79fcac810540c40a45133b855fdc47
+    - name: coveiro6_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 46
+      spriteId: ae1ba136943f33c46a2c547429a26f40
+    - name: coveiro6_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 7
+        y: 1
+        width: 37
+        height: 46
+      spriteId: 71be37326ca96e24fa14513721e31082
+    - name: coveiro6_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 7
+        y: 1
+        width: 36
+        height: 46
+      spriteId: ca91f92c058df6042897d127083114d6
+    - name: coveiro6_Frame_9
+      frameIndex: 9
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 46
+      spriteId: e98de1830beae59419d86a27268374b8
+    - name: coveiro6_Frame_10
+      frameIndex: 10
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 45
+      spriteId: 26a22e8129cdc4348809e60496d38f0a
+    - name: coveiro6_Frame_11
+      frameIndex: 11
+      cellRect:
+        x: 8
+        y: 1
+        width: 35
+        height: 45
+      spriteId: b285cfe897bd1bc4eae86616b7dd63db
+    - name: coveiro6_Frame_12
+      frameIndex: 12
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: dc6c23ebdd510864b8c527278ab3d5af
+    - name: coveiro6_Frame_13
+      frameIndex: 13
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 47
+      spriteId: 63de9753dd57b0b468a67c8e2a7a16f2
+    - name: coveiro6_Frame_14
+      frameIndex: 14
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 9c59e4fe48aa6d645bd429a06c2c215c
+    - name: coveiro6_Frame_15
+      frameIndex: 15
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 2cf4dc83677e3494d86fa09b7a1bff59
+    - name: coveiro6_Frame_16
+      frameIndex: 16
+      cellRect:
+        x: 6
+        y: 1
+        width: 38
+        height: 45
+      spriteId: ad6ae1c2fecc78e4490a72446841d48d
+    - name: coveiro6_Frame_17
+      frameIndex: 17
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 1109cc3c87a1d0448a93d82c67512b66
+    - name: coveiro6_Frame_18
+      frameIndex: 18
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 5a7804dbcac7b4d41bafd2bc2ad34676
+    - name: coveiro6_Frame_19
+      frameIndex: 19
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 639a2857df066944c98e9e01ca53012a
+    - name: coveiro6_Frame_20
+      frameIndex: 20
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 1cf346e3dd16a974485ad47ab300a834
+    - name: coveiro6_Frame_21
+      frameIndex: 21
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 46
+      spriteId: 3d20c81e5e1c98945971bf81e8d6cfad
+    - name: coveiro6_Frame_22
+      frameIndex: 22
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 45
+      spriteId: e62c8c1bea8d52f4d966a7e8601546da
+    - name: coveiro6_Frame_23
+      frameIndex: 23
+      cellRect:
+        x: 4
+        y: 1
+        width: 39
+        height: 45
+      spriteId: 8e16a641e71a6594e95f3741aadcaaf7
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  generatePhysicsShape: 0
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 48, y: 48}

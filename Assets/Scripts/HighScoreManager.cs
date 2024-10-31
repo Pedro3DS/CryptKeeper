@@ -46,7 +46,7 @@ public class HighScoreManager : MonoBehaviour {
             List<HighScore> highScores = new List<HighScore>();
 
             // Checa se os dados existem e carrega as pontua��es
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 string name = PlayerPrefs.GetString("TopPlayer" + i, "");
                 int score = PlayerPrefs.GetInt("TopScore" + i, 0);
                 if (!string.IsNullOrEmpty(name)) {
@@ -59,8 +59,6 @@ public class HighScoreManager : MonoBehaviour {
                 highScores.Add(new HighScore("Player1", 0));
                 highScores.Add(new HighScore("Player2", 0));
                 highScores.Add(new HighScore("Player3", 0));
-                highScores.Add(new HighScore("Player4", 0));
-                highScores.Add(new HighScore("Player5", 0));
                 SaveInitialScores(highScores);
             }
 
