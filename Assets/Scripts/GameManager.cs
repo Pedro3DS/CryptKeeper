@@ -32,8 +32,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private GameObject gameOverCanvas;
     
     private int bossIncrementoVida = 10; 
-    private int bossIncrementoPontos = 10; 
+    private int bossIncrementoPontos = 100; 
     private bool _normalMusic = false;
+    private float _groundEnemySpeed;
 
 
     [SerializeField] private AudioSource audioSource;
@@ -92,6 +93,13 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator GerenciarHordas() {
         while (true) {
+            if(hordaAtual >= 10){
+            _groundEnemySpeed +=10f;
+
+            }else{
+
+            _groundEnemySpeed +=5f;
+            }
             hordaAtiva = true;
 
             
@@ -178,9 +186,8 @@ public class GameManager : MonoBehaviour {
                
                 
         }
-
         
-        // inimigo.AjustarVidaInicial(); 
+        inimigo.AjustarVelocidade(_groundEnemySpeed); 
     }
 
     void SpawnInimigoVoador() {

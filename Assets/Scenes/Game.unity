@@ -198,81 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26595585}
   m_CullTransparentMesh: 1
---- !u!1 &29795637
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 29795638}
-  - component: {fileID: 29795640}
-  - component: {fileID: 29795639}
-  m_Layer: 5
-  m_Name: Heart (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &29795638
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29795637}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1383727974}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &29795639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29795637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9debce3fd993dd94cb60e51cd5a35a0a, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &29795640
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29795637}
-  m_CullTransparentMesh: 1
 --- !u!1 &144687087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,13 +2235,12 @@ MonoBehaviour:
   shootSpeed: 15
   shootCadence: 0.6
   canTakeDamage: 1
-  maxHealth: 3
+  maxHealth: 2
   activeLife: {fileID: 21300000, guid: 0c0f8481ee490b4458e02b23e0e61737, type: 3}
   disableLife: {fileID: 21300000, guid: 907ea41a898fc1d43a21f5a9ed897f99, type: 3}
   heatsField:
   - {fileID: 1022886363}
   - {fileID: 1539080582}
-  - {fileID: 29795639}
   mainCamera: {fileID: 1826718718}
   boundsLimit: 1
   gameOverCanvas: {fileID: 1508216995}
@@ -2735,7 +2659,6 @@ RectTransform:
   m_Children:
   - {fileID: 1022886362}
   - {fileID: 1539080581}
-  - {fileID: 29795638}
   m_Father: {fileID: 723025906}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.108259276}
@@ -2926,6 +2849,18 @@ PrefabInstance:
     - target: {fileID: 6860206305678277441, guid: 3f94c76f39c217f4fa852317bc6fac26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557121404538608333, guid: 3f94c76f39c217f4fa852317bc6fac26, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557121404538608333, guid: 3f94c76f39c217f4fa852317bc6fac26, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557121404538608333, guid: 3f94c76f39c217f4fa852317bc6fac26, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3414,8 +3349,8 @@ MonoBehaviour:
   scoreText: {fileID: 578793722}
   hordaText: {fileID: 742050642}
   countdownText: {fileID: 687211777}
-  hordaAtual: 11
-  inimigosPorHorda: 3
+  hordaAtual: 1
+  inimigosPorHorda: 6
   spawnInterval: 1.5
   screenWidth: 20
   screenHeight: 10

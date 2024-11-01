@@ -201,9 +201,8 @@ MonoBehaviour:
   maxHealth: 4
   scoreValue: 2
   dropItems:
-  - {fileID: 7471980313234327220, guid: c6d6608ff5e07bb47afd439604ff6cb4, type: 3}
   - {fileID: 1304864915812039589, guid: 512b2c424309853448d5598b5ce91919, type: 3}
-  dropChance: 50
+  dropChance: 20
 --- !u!95 &6528866307593717938
 Animator:
   serializedVersion: 5

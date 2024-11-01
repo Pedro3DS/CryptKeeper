@@ -107,7 +107,6 @@ MonoBehaviour:
   maxHealth: 1
   scoreValue: 2
   dropItems:
-  - {fileID: 7471980313234327220, guid: c6d6608ff5e07bb47afd439604ff6cb4, type: 3}
   - {fileID: 3268684106685381143, guid: 1249060911df0034dbf5b3328355d3e8, type: 3}
   dropChance: 30
 --- !u!114 &4746165995136224644

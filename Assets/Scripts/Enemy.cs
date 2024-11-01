@@ -28,8 +28,14 @@ public class Enemy : MonoBehaviour {
         } else {
             maxHealth = 1;
             scoreValue = 1;
+            // gameObject.GetComponent<InimigoTerrestre>().velocidade += 5;
         }
         currentHealth = maxHealth; 
+    }
+    public void AjustarVelocidade(float newSpeed) {
+
+        gameObject.GetComponent<InimigoTerrestre>().velocidade += newSpeed;
+
     }
 
     public void AumentarDificuldade(int vidaExtra, int pontosExtra) {

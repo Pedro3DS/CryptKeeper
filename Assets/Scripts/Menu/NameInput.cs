@@ -18,7 +18,7 @@ public class NameInput : MonoBehaviour {
     }
 
     private void Update() {
-        if (((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") >0) && !verticalAxisInUse) && Input.GetKey(KeyCode.Joystick1Button8) || Input.GetKey(KeyCode.Keypad2) && Input.GetKey(KeyCode.Joystick1Button2) || Input.GetKey(KeyCode.Keypad5)) {
+        if (((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") >0) && !verticalAxisInUse) && Input.GetKey(KeyCode.Joystick1Button2) ) {
             PlayerPrefs.DeleteAll();
         }
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") >0) && !verticalAxisInUse) {

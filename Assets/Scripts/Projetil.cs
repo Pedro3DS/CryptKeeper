@@ -14,18 +14,18 @@ public class Projetil : MonoBehaviour {
         }
     }
 
-    // Detecta colisão com o jogador
+    // Detecta colisï¿½o com o jogador
     void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
             Player player = collision.GetComponent<Player>();
-            if (player != null) {
+            if (player != null && player.canTakeDamage) {
                 player.TakeDamage(1); // Causa 1 de dano ao jogador
             }
-            Destroy(gameObject); // Destroi o projetil após a colisão
+            Destroy(gameObject); // Destroi o projetil apï¿½s a colisï¿½o
         }
         if (collision.CompareTag("escudo")) {
             
-            Destroy(gameObject); // Destroi o projetil após a colisão
+            Destroy(gameObject); // Destroi o projetil apï¿½s a colisï¿½o
         }
     }
 }

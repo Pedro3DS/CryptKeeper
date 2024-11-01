@@ -133,7 +133,6 @@ MonoBehaviour:
   dropItems:
   - {fileID: 4132527478208873322, guid: 7c9e15df6e06af24cb183359a9e4ac88, type: 3}
   - {fileID: 3268684106685381143, guid: 1249060911df0034dbf5b3328355d3e8, type: 3}
-  - {fileID: 7471980313234327220, guid: c6d6608ff5e07bb47afd439604ff6cb4, type: 3}
   dropChance: 100
 --- !u!58 &7114961138083863749
 CircleCollider2D:
